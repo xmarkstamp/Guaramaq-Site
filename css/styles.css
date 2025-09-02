@@ -30,11 +30,14 @@ img{max-width:100%;height:auto;display:block}
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
 .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
+/* (se o header usar 'header-grid' em vez de 'wrap', já deixo pronto) */
+.header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
+
 /* ===== Header / Topo ===== */
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .header .wrap{padding:12px 0}
 
-/* Marca — LOGO GRANDE (PC) e FULL-WIDTH (mobile) */
+/* Marca — (valores antigos serão sobrescritos por overrides no fim) */
 .brand{display:flex;align-items:center;gap:12px;width:auto}
 .brand img{
   height:160px !important;         /* destaque no desktop */
@@ -249,4 +252,66 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
   /* Hero centralizado no mobile */
   .hero .grid{text-align:center}
+}
+
+/* =========================================================
+   OVERRIDES DA LOGO — CORTA SOBRAS E EVITA DISTORÇÃO
+   (mantém a identidade visual sem empurrar o layout)
+   ========================================================= */
+
+/* PC/Desktop: caixa de 400x110 (ajuste à vontade) */
+.header .brand{
+  width:400px;             /* largura alvo no PC */
+  height:110px;            /* altura alvo no PC */
+  overflow:hidden;         /* corta a “faixa branca” do PNG */
+  display:flex;
+  align-items:center;
+}
+.header .brand img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover;        /* preenche e corta o excesso SEM distorcer */
+  display:block;
+}
+
+/* Tablet */
+@media (max-width:1024px){
+  .header .brand{
+    width:340px;
+    height:100px;
+  }
+}
+
+/* Mobile: full-width no topo; botões empilhados abaixo */
+@media (max-width:768px){
+  /* se usar wrap OU header-grid, empilha tudo */
+  .header .wrap,
+  .header-grid{
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+
+  .header .brand{
+    width:100%;
+    height:120px;          /* altura do cabeçalho no celular */
+  }
+  .header .brand img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover;
+  }
+
+  .header-actions{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .header-actions .btn{
+    width:100%;
+    justify-content:center;
+    font-size:16px;
+    padding:14px;
+  }
 }
