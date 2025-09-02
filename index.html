@@ -10,7 +10,7 @@
   <meta property="og:image" content="assets/banner.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=4">
   <script defer src="js/main.js"></script>
   <meta name="format-detection" content="telephone=yes">
 </head>
@@ -20,13 +20,13 @@
 <header class="header">
   <div class="container header-grid">
     
-    <!-- LOGO -->
+    <!-- LOGO dentro de “caixa” (corta sobras via CSS) -->
     <a class="brand" href="/" aria-label="Guarámaq - Página inicial">
       <img src="assets/logotipo.png" alt="Guarámaq Assistência Técnica e Refrigeração">
     </a>
 
     <!-- AÇÕES À DIREITA (PC) / EMPILHADAS (Mobile) -->
-    <div class="header-actions">
+    <div class="header-actions actions">
       <a class="btn ghost" href="tel:+556135543806" aria-label="Ligar para Guarámaq">(61) 3554-3806</a>
       <a class="btn whats" 
          href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
@@ -51,7 +51,7 @@
       <div class="hero-text">
         <h1 class="hero-title">
           <span class="title-top">
-            <!-- Sirene SVG azul com degradê (mais profissional que emoji) -->
+            <!-- Sirene SVG azul com degradê -->
             <svg class="siren" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="gBlue" x1="0" x2="1" y1="0" y2="1">
