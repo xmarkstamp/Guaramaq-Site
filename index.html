@@ -10,44 +10,69 @@
   <meta property="og:image" content="assets/banner.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=3">
   <script defer src="js/main.js"></script>
   <meta name="format-detection" content="telephone=yes">
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="header">
-  <div class="container wrap">
-    <a class="brand" href="#" aria-label="Guarámaq Refrigeração - Início">
+  <div class="container header-grid">
+    
+    <!-- LOGO -->
+    <a class="brand" href="/" aria-label="Guarámaq - Página inicial">
       <img src="assets/logotipo.png" alt="Guarámaq Assistência Técnica e Refrigeração">
     </a>
-    <div class="actions">
+
+    <!-- AÇÕES À DIREITA (PC) / EMPILHADAS (Mobile) -->
+    <div class="header-actions">
       <a class="btn ghost" href="tel:+556135543806" aria-label="Ligar para Guarámaq">(61) 3554-3806</a>
       <a class="btn whats" 
          href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
          target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
          WhatsApp: (61) 98221-6938
       </a>
-      <a class="btn primary" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/@-15.8219142,-47.9971568,17z/data=!3m1!4b1!4m6!3m5!1s0x935a2f0718585947:0xc00f86620850ceaf!8m2!3d-15.8219142!4d-47.9945819!16s%2Fg%2F11vys553m3?entry=ttu" target="_blank" rel="noopener">Ver no mapa</a>
-      <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">Rota até a loja</a>
+      <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">
+        Rota até a loja
+      </a>
     </div>
+
   </div>
 </header>
 
 <main>
 
-  <!-- HERO com título sofisticado e CTA -->
+  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="container grid">
+      
+      <!-- Texto, título e CTAs -->
       <div class="hero-text">
-        <h1>
-          <span class="highlight">🚨 Seu aparelho parou?</span><br>
-          <span class="sub">Atendimento emergencial <strong>24h</strong> no Guará e Região</span>
+        <h1 class="hero-title">
+          <span class="title-top">
+            <!-- Sirene SVG azul com degradê (mais profissional que emoji) -->
+            <svg class="siren" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="gBlue" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#0ea5e9"/>
+                  <stop offset="1" stop-color="#2563eb"/>
+                </linearGradient>
+              </defs>
+              <path d="M14 30c0-10 7-18 18-18s18 8 18 18v8h4a4 4 0 0 1 4 4v6H6v-6a4 4 0 0 1 4-4h4v-8z" fill="url(#gBlue)"/>
+              <rect x="10" y="48" width="44" height="6" rx="3" fill="#0b1a44"/>
+            </svg>
+            Seu aparelho parou?
+          </span>
+          <span class="title-mid">Atendimento emergencial <strong>24h</strong></span>
+          <span class="title-bottom">no Guará e região</span>
         </h1>
+
         <p>
           Técnicos certificados, peças originais e garantia por escrito.<br>
           Soluções rápidas para geladeiras, freezers e máquinas de lavar.
         </p>
+
         <div class="actions">
           <a class="btn primary pulse" href="tel:+556135543806" aria-label="Ligar agora para Guarámaq">📞 Ligue Agora</a>
           <a class="btn whats" 
@@ -64,29 +89,17 @@
         </div>
       </div>
 
-      <!-- Banner interativo ao lado (desktop) -->
+      <!-- Banner CLICÁVEL (liga direto) – sem overlay de texto -->
       <div class="hero-image">
-         <a class="banner" href="tel:+556135543806" aria-label="Ligar para Guarámaq">
-         </a>
-        <div class="banner">
+        <a class="banner" href="tel:+556135543806" aria-label="Ligar para Guarámaq">
           <img src="assets/banner.png" alt="Técnico de refrigeração, Guarámaq Refrigeração">
-          <div class="banner-overlay">
-            <h2>Atendimento 24h no Guará</h2>
-            <p>Geladeiras • Freezers • Máquinas de Lavar • Micro-ondas • Purificadores</p>
-            <div class="actions">
-              <a class="btn primary" href="tel:+556135543806">📞 Ligue agora</a>
-              <a class="btn whats" 
-                 href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
-                 target="_blank" rel="noopener">💬 Orçamento WhatsApp</a>
-            </div>
-          </div>
-        </div>
+        </a>
       </div>
 
     </div>
   </section>
 
-  <!-- Serviços em destaque -->
+  <!-- ================= SERVIÇOS ================= -->
   <section class="section">
     <div class="container grid-3">
       <div class="card">
@@ -104,7 +117,7 @@
     </div>
   </section>
 
-  <!-- Como funciona (cartões clicáveis) -->
+  <!-- ================= COMO FUNCIONA ================= -->
   <section class="section">
     <div class="container">
       <h2>Como funciona</h2>
@@ -142,7 +155,7 @@
     </div>
   </section>
 
-  <!-- Formulário -->
+  <!-- ================= FORMULÁRIO ================= -->
   <section class="section" id="orcamento">
     <div class="container">
       <h2>Orçamento em minutos</h2>
@@ -164,6 +177,7 @@
 
 </main>
 
+<!-- ================= FOOTER ================= -->
 <footer>
   <div class="container wrap">
     <small>© 2025 Guarámaq Refrigeração — Guará, Brasília-DF.</small>
@@ -175,13 +189,12 @@
          target="_blank" rel="noopener">
          Solicitar Orçamento no WhatsApp
       </a>
-      <a class="btn ghost" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/" target="_blank" rel="noopener">Ver no mapa</a>
       <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">Rota até a loja</a>
     </div>
   </div>
 </footer>
 
-<!-- Dados estruturados LocalBusiness -->
+<!-- ================= SCHEMA.ORG ================= -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
