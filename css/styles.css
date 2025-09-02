@@ -1,5 +1,18 @@
+/* =========================
+   Guarámaq • styles.css
+   ========================= */
+
+/* ===== Variáveis ===== */
 :root{
-  --brand:#2563eb; --brand-2:#0ea5e9; --bg:#f8fafc; --txt:#0f172a; --muted:#475569; --ok:#16a34a;
+  --brand:#2563eb;
+  --brand-2:#0ea5e9;
+  --bg:#f8fafc;
+  --txt:#0f172a;
+  --muted:#475569;
+  --ok:#16a34a;
+  --surface:#ffffff;
+  --border:#e2e8f0;
+  --shadow:0 12px 30px rgba(2,6,23,.10);
 }
 
 /* ===== Reset & base ===== */
@@ -7,46 +20,101 @@
 html,body{margin:0;padding:0}
 body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg); color:var(--txt);
+  background:var(--bg); color:var(--txt); line-height:1.5;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
+
+/* ===== Containers ===== */
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
+.wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
 /* ===== Header / Topo ===== */
-.header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e2e8f0;z-index:50}
-.header .wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+.header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
+.header .wrap{padding:12px 0}
 
-/* Marca maior e com texto opcional ao lado */
-.brand{display:flex;align-items:center;gap:10px}
-.brand img{height:60px; /* antes 40px */ }
-.brand-text{font-size:20px;font-weight:800;color:#0f172a;letter-spacing:-.3px}
+/* Marca (apenas imagem, sem texto lateral) */
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{
+  height:90px; /* maior no desktop */
+  width:auto;
+}
 
-.actions{display:flex;gap:8px;flex-wrap:wrap}
+/* ===== Tipografia base ===== */
+h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,48px);line-height:1.15}
+h2{margin:0 0 18px;font-size:28px}
+h3{margin:0 0 8px;font-size:20px}
+h4{margin:0 0 6px;font-size:16px}
+p{margin:0 0 14px;font-size:16px;color:#334155}
 
 /* ===== Botões ===== */
+.actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:12px 16px;
-  font-weight:700;border:1px solid transparent;transition:.18s transform,.18s box-shadow,.18s background,.18s border;
-  cursor:pointer; line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;border-radius:10px;border:1px solid transparent;
+  font-weight:700;font-size:15px;line-height:1;cursor:pointer;
+  transition:.15s ease; transition-property:transform,box-shadow,background,border,color;
 }
 .btn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.10)}
-.btn:active{transform:translateY(0);box-shadow:0 4px 10px rgba(2,6,23,.08)}
+.btn:active{transform:translateY(0);box-shadow:0 4px 8px rgba(2,6,23,.10)}
 .btn.primary{background:var(--brand);color:#fff}
+.btn.primary:hover{background:#1d4ed8}
 .btn.whats{background:#25D366;color:#06220f}
 .btn.whats:hover{background:#16a34a;color:#fff}
 .btn.ghost{background:#fff;border-color:#cbd5e1}
-.tel{font-weight:800;color:var(--brand)}
 
-/* ===== Hero ===== */
-.hero{background:#fff}
-.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:28px 0}
-h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0 0 10px}
-.hero p{font-size:18px;color:var(--muted);margin:0 0 16px}
-.hero img{width:100%;height:auto;border-radius:14px;box-shadow:0 12px 30px rgba(2,6,23,.12)}
+/* Botão com animação “pulse” (induz ação) */
+.btn.pulse{animation:pulse 1.8s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,99,235,.55)}
+  70%{box-shadow:0 0 0 12px rgba(37,99,235,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}
+}
 
-/* ===== Badges (agora interativas + tooltip) ===== */
+/* ===== Hero refinado ===== */
+.hero{background:#fff;padding:50px 0}
+.hero .grid{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
+}
+
+/* Título com sofisticação e CTA forte */
+.hero-text h1{
+  font-weight:900; margin:0 0 16px; color:#0f172a;
+}
+.hero-text h1 .highlight{
+  display:inline-block;
+  background:linear-gradient(90deg, #2563eb, #0ea5e9);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero-text h1 .sub{
+  display:inline-block; margin-top:6px;
+  font-size:clamp(22px,3.6vw,34px); font-weight:800; color:#1e293b;
+}
+.hero-text p{font-size:18px;color:#475569;margin:0 0 24px}
+
+/* Imagem do hero / banner estático ao lado (desktop) */
+.hero-image img{border-radius:16px; box-shadow:var(--shadow)}
+
+/* ===== Banner Interativo ===== */
+.banner{
+  position:relative; overflow:hidden; border-radius:14px; box-shadow:var(--shadow);
+  margin:20px 0;
+}
+.banner img{width:100%; display:block; transition:transform .4s ease}
+.banner:hover img{transform:scale(1.05)}
+.banner-overlay{
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:20px;
+  background:linear-gradient(180deg, rgba(15,23,42,.55) 0%, rgba(15,23,42,.82) 100%);
+  color:#fff;
+}
+.banner-overlay h2{font-size:clamp(22px, 4vw, 32px); margin-bottom:10px}
+.banner-overlay p{font-size:16px; margin-bottom:16px; color:#e0f2fe}
+.banner-overlay .actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+.banner-overlay .btn{font-size:15px; padding:12px 18px}
+
+/* ===== Badges (interativas + tooltip) ===== */
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
 .badge{
   background:#e2e8f0;color:#0f172a;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:600;
@@ -60,7 +128,7 @@ h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0 0 10px}
   background:linear-gradient(135deg,#e2e8f0 0%,#ffffff 100%);
   border-color:rgba(37,99,235,.25);
 }
-/* Tooltip quando usar data-tip="..." */
+/* Tooltip quando usar data-tip */
 .badge[data-tip]::after{
   content:attr(data-tip);
   position:absolute; left:50%; top:calc(100% + 10px);
@@ -74,31 +142,57 @@ h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0 0 10px}
   opacity:1; transform:translateX(-50%) translateY(0);
 }
 
-/* ===== Seções / Cards / Steps ===== */
-.section{padding:34px 0}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+/* ===== Seções ===== */
+.section{padding:40px 0}
+
+/* ===== Cards ===== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{
-  background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;
-  box-shadow:0 4px 12px rgba(15,23,42,.04);
-  transition:box-shadow .15s ease, transform .15s ease;
+  background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px;
+  box-shadow:0 4px 12px rgba(15,23,42,.06); transition:box-shadow .15s, transform .15s;
 }
 .card:hover{box-shadow:0 16px 30px rgba(2,6,23,.10); transform:translateY(-2px)}
-.card h3{margin:6px 0 8px;font-size:18px}
+.card h3{margin:6px 0 8px}
 .card p{margin:0;color:var(--muted)}
 
-.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.step{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
-.step h4::before{counter-increment:step;content:counter(step)'. ';color:var(--brand)}
+/* ===== Steps / Como funciona (agora links clicáveis) ===== */
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.step{
+  display:block; background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px;
+  text-decoration:none; color:inherit; position:relative; overflow:hidden;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.step:hover,.step:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 16px 30px rgba(2,6,23,.12);
+  border-color:rgba(37,99,235,.35);
+}
+.step h4{margin:0 0 6px; font-size:18px; display:flex; align-items:center; gap:8px}
+.step h4::before{
+  content:""; display:inline-block; width:10px; height:10px; border-radius:999px; background:var(--brand);
+}
+.step .meta{display:flex; align-items:center; gap:10px; margin-top:10px; font-size:14px; color:#334155}
+.step .cta{
+  margin-top:12px; display:inline-flex; align-items:center; gap:8px;
+  font-weight:700; color:var(--brand);
+}
+.step .cta::after{content:"→"}
+
+/* Estados por etapa (cores do marcador) */
+.step.is-contact h4::before{background:#16a34a}  /* WhatsApp */
+.step.is-diagnose h4::before{background:#2563eb} /* Ligação */
+.step.is-repair h4::before{background:#f59e0b}   /* Rota */
 
 /* ===== Form ===== */
-form{display:grid;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+form{display:grid;gap:12px;max-width:560px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
 label{display:grid;gap:6px;font-weight:600}
 input,textarea{
-  padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;
-  outline:none; transition:border .12s ease, box-shadow .12s ease;
+  padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;outline:none;
+  transition:border .12s, box-shadow .12s;
 }
 input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
-small.disclaimer{color:#64748b}
+textarea{min-height:110px;resize:vertical}
+.disclaimer{color:#64748b}
 
 /* ===== Footer ===== */
 footer{background:#0b1220;color:#cbd5e1}
@@ -113,19 +207,33 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 }
 
 /* ===== Responsividade ===== */
+@media (max-width:1180px){
+  .container{max-width:1000px}
+}
+@media (max-width:1024px){
+  .brand img{height:84px} /* logo no tablet */
+}
 @media (max-width:900px){
   .hero .grid{grid-template-columns:1fr}
   .grid-3,.steps{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  /* Header mais organizado no mobile: empilha e dá largura total aos botões */
+  /* Header organizado no mobile: empilha e dá largura total aos botões */
   .header .wrap{flex-direction:column;align-items:stretch;gap:10px}
-  .brand img{height:52px}
+  .brand img{height:70px} /* logo no celular */
   .actions{display:flex;flex-wrap:wrap;gap:8px}
   .actions .btn{width:100%;justify-content:center}
 
-  /* Tipografia e espaços menores */
+  .section{padding:34px 0}
   h1{font-size:28px}
-  .hero .grid{gap:18px;padding:20px 0}
-  .badge{padding:8px 10px;font-size:12px}
+  h2{font-size:22px}
+  p{font-size:15px}
+
+  /* Banner mobile */
+  .banner-overlay{padding:18px}
+  .banner-overlay .btn{width:100%}
+
+  /* Hero centralizado no mobile */
+  .hero .grid{text-align:center}
+  .hero .actions{justify-content:center}
 }
