@@ -34,17 +34,23 @@ img{max-width:100%;height:auto;display:block}
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .header .wrap{padding:12px 0}
 
-/* Marca (apenas imagem, sem texto lateral) — LOGO GRANDE */
-.brand{display:flex;align-items:center;gap:12px}
+/* Marca — LOGO GRANDE (PC) e FULL-WIDTH (mobile) */
+.brand{display:flex;align-items:center;gap:12px;width:auto}
 .brand img{
-  height:140px !important;  /* desktop grande */
+  height:160px !important;         /* destaque no desktop */
   width:auto !important;
 }
 @media (max-width:1024px){
-  .brand img{height:110px !important;}
+  .brand img{height:120px !important;}
 }
 @media (max-width:640px){
-  .brand img{height:84px !important;}
+  .header .container{padding-left:0;padding-right:0} /* full-bleed no topo */
+  .header .wrap{flex-direction:column;align-items:stretch;gap:10px}
+  .brand{width:100%}
+  .brand img{
+    width:100% !important;         /* ocupa de lado a lado no celular */
+    height:auto !important;
+  }
 }
 
 /* ===== Tipografia base ===== */
@@ -78,13 +84,13 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}
 }
 
-/* ===== Hero refinado (sem poluição) ===== */
+/* ===== Hero refinado ===== */
 .hero{background:#fff;padding:50px 0}
 .hero .grid{
   display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
 }
 
-/* Título sofisticado com 3 linhas (siren + 24h + região) */
+/* Título em 3 linhas com sirene SVG */
 .hero-title{
   margin:0 0 18px;
   line-height:1.15;
@@ -95,7 +101,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   font-size:clamp(28px,5vw,48px);
   font-weight:900;
 }
-.siren{ /* Sirene SVG destacada */
+.siren{
   width:38px; height:38px; flex:0 0 38px;
   filter: drop-shadow(0 4px 8px rgba(37,99,235,.35));
 }
@@ -118,26 +124,20 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .hero-text p{font-size:18px;color:#475569;margin:0 0 22px}
 .hero .actions{display:flex; gap:14px; flex-wrap:wrap}
 
-/* Imagem do hero / banner simples ao lado (desktop) */
-.hero-image .banner{
-  border-radius:14px; overflow:hidden;
+/* ===== Banner simples e CLICÁVEL (liga ao clicar) ===== */
+.hero-image a.banner{
+  display:block;                   /* garante clique em toda a área */
+  border-radius:14px;
+  overflow:hidden;
   box-shadow:var(--shadow);
 }
-.hero-image .banner img{
+.hero-image a.banner img{
   width:100%; display:block;
   transition:transform .45s ease;
 }
-.hero-image .banner:hover img{
+.hero-image a.banner:hover img{
   transform:scale(1.04);
 }
-
-/* ===== Banner Interativo (sem overlay de texto) ===== */
-/* (mantido simples; se no futuro quiser overlay, basta inserir HTML e as regras abaixo)
-.banner{ position:relative; overflow:hidden; border-radius:14px; box-shadow:var(--shadow); margin:20px 0 }
-.banner img{width:100%; display:block; transition:transform .4s ease}
-.banner:hover img{transform:scale(1.05)}
-.banner-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
-*/
 
 /* ===== Badges (interativas + tooltip) ===== */
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
@@ -153,7 +153,6 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   background:linear-gradient(135deg,#e2e8f0 0%,#ffffff 100%);
   border-color:rgba(37,99,235,.25);
 }
-/* Tooltip quando usar data-tip */
 .badge[data-tip]::after{
   content:attr(data-tip);
   position:absolute; left:50%; top:calc(100% + 10px);
@@ -180,7 +179,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .card h3{margin:6px 0 8px}
 .card p{margin:0;color:var(--muted)}
 
-/* ===== Steps / Como funciona (links clicáveis) ===== */
+/* ===== Steps / Como funciona ===== */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 .step{
   display:block; background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px;
@@ -203,7 +202,6 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 }
 .step .cta::after{content:"→"}
 
-/* Estados por etapa (cores do marcador) */
 .step.is-contact h4::before{background:#16a34a}  /* WhatsApp */
 .step.is-diagnose h4::before{background:#2563eb} /* Ligação */
 .step.is-repair h4::before{background:#f59e0b}   /* Rota */
@@ -235,17 +233,12 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 @media (max-width:1180px){
   .container{max-width:1000px}
 }
-@media (max-width:1024px){
-  /* logo já ajustada nos breakpoints acima */
-}
 @media (max-width:900px){
   .hero .grid{grid-template-columns:1fr}
   .grid-3,.steps{grid-template-columns:1fr}
   .hero .actions{justify-content:center}
 }
 @media (max-width:640px){
-  /* Header organizado no mobile: empilha e dá largura total aos botões */
-  .header .wrap{flex-direction:column;align-items:stretch;gap:10px}
   .actions{display:flex;flex-wrap:wrap;gap:8px}
   .actions .btn{width:100%;justify-content:center}
 
@@ -253,10 +246,6 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   h1{font-size:28px}
   h2{font-size:22px}
   p{font-size:15px}
-
-  /* Banner mobile */
-  .banner-overlay{padding:18px}
-  .banner-overlay .btn{width:100%}
 
   /* Hero centralizado no mobile */
   .hero .grid{text-align:center}
