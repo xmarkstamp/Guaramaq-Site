@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -13,25 +13,64 @@
   <link rel="stylesheet" href="css/styles.css">
   <script defer src="js/main.js"></script>
   <meta name="format-detection" content="telephone=yes">
+
+  <!-- Overrides e melhorias sem alterar seu CSS base -->
+  <style>
+    /* Marca maior e com texto */
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:64px;width:auto}
+    .brand-text{font-size:20px;font-weight:800;color:#0f172a;letter-spacing:-.3px}
+
+    /* Badges interativas + tooltip */
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
+    .badge{
+      background:#e2e8f0;color:#0f172a;padding:8px 12px;border-radius:999px;
+      font-size:13px;font-weight:600;line-height:1;cursor:pointer;position:relative;
+      border:1px solid rgba(15,23,42,.06);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border .18s ease;
+      outline:0
+    }
+    .badge:hover,.badge:focus-visible{
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 10px 20px rgba(2,6,23,.12),0 2px 6px rgba(2,6,23,.08);
+      background:linear-gradient(135deg,#e2e8f0 0%,#ffffff 100%);
+      border-color:rgba(37,99,235,.25)
+    }
+    .badge[data-tip]::after{
+      content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 10px);
+      transform:translateX(-50%) translateY(6px);
+      padding:8px 10px;font-size:12px;color:#0f172a;background:#fff;border:1px solid #e2e8f0;border-radius:8px;
+      box-shadow:0 10px 24px rgba(2,6,23,.12);opacity:0;pointer-events:none;transition:opacity .15s, transform .15s;white-space:nowrap;z-index:20
+    }
+    .badge[data-tip]:hover::after,.badge[data-tip]:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* Mobile: header mais organizado, botões 100% largura */
+    @media (max-width: 640px){
+      .header .wrap{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+      .brand img{height:52px}
+      .actions{display:flex;flex-wrap:wrap;gap:8px}
+      .actions .btn{width:100%;justify-content:center}
+    }
+  </style>
 </head>
 <body>
 <header class="header">
   <div class="container wrap">
-    <a class="brand" href="#">
-      <img src="assets/logo.svg" alt="Guarámaq Refrigeração, logotipo">
+    <a class="brand" href="#" aria-label="Guarámaq Refrigeração - Início">
+      <img src="assets/logo.svg" alt="Logotipo Guarámaq">
+      <span class="brand-text">Guarámaq Refrigeração</span>
     </a>
-    
-
-
-<div class="actions">
-  <a class="btn ghost" href="tel:+556135543806">(61) 3554-3806</a>
-  <a class="btn whats" href="https://wa.me/5561982216938?text=Olá,%20preciso%20de%20atendimento" target="_blank" rel="noopener">WhatsApp: (61) 98221-6938</a>
-  <a class="btn primary" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/@-15.8219142,-47.9971568,17z/data=!3m1!4b1!4m6!3m5!1s0x935a2f0718585947:0xc00f86620850ceaf!8m2!3d-15.8219142!4d-47.9945819!16s%2Fg%2F11vys553m3?entry=ttu" target="_blank" rel="noopener">Ver no mapa</a>
-  <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">Rota até a loja</a>
-</div>
-
-
-
+    <div class="actions">
+      <!-- Fixo e WhatsApp em destaque -->
+      <a class="btn ghost" href="tel:+556135543806" aria-label="Ligar para Guarámaq">(61) 3554-3806</a>
+      <a class="btn whats" 
+         href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" 
+         target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
+         WhatsApp: (61) 98221-6938
+      </a>
+      <a class="btn primary" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/@-15.8219142,-47.9971568,17z/data=!3m1!4b1!4m6!3m5!1s0x935a2f0718585947:0xc00f86620850ceaf!8m2!3d-15.8219142!4d-47.9945819!16s%2Fg%2F11vys553m3?entry=ttu" target="_blank" rel="noopener">Ver no mapa</a>
+      <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">Rota até a loja</a>
+    </div>
   </div>
 </header>
 
@@ -42,22 +81,24 @@
         <h1>Seu aparelho parou? Atendimento 24h</h1>
         <p>Diagnóstico rápido, peça original e serviço com garantia. Conserto de geladeiras, freezers e máquinas de lavar no Guará e região.</p>
         <div class="badges">
-          <span class="badge">Atendimento no Guará (Brasília)</span>
-          <span class="badge">Técnicos experientes</span>
-          <span class="badge">Garantia no serviço</span>
+          <span class="badge" tabindex="0" data-tip="Atendimento local e rápido">Atendimento no Guará (Brasília)</span>
+          <span class="badge" tabindex="0" data-tip="Equipe certificada e experiente">Técnicos experientes</span>
+          <span class="badge" tabindex="0" data-tip="Garantia por escrito">Garantia no serviço</span>
         </div>
         <div class="actions">
           <a class="btn primary" href="#orcamento">Solicitar orçamento</a>
           <a class="btn whats" 
-   href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" 
-   target="_blank" rel="noopener">
-   Solicitar Orçamento no WhatsApp
-</a>
+             href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" 
+             target="_blank" rel="noopener">
+             Solicitar Orçamento no WhatsApp
+          </a>
         </div>
       </div>
-      <div>
+
+      <!-- IMAGEM CLICÁVEL: liga para o fixo -->
+      <a href="tel:+556135543806" aria-label="Ligar para Guarámaq">
         <img src="assets/banner.png" alt="Técnico de refrigeração atendendo geladeira, Guarámaq Refrigeração">
-      </div>
+      </a>
     </div>
   </section>
 
@@ -99,7 +140,7 @@
   </section>
 
   <section class="section" id="orcamento">
-    <div class="container" >
+    <div class="container">
       <h2>Orçamento em minutos</h2>
       <form action="https://formspree.io/f/SEU_ID" method="POST">
         <label>Nome
@@ -122,15 +163,15 @@
   <div class="container wrap">
     <small>© 2025 Guarámaq Refrigeração — Guará, Brasília-DF.</small>
     <div class="actions">
-      <a class="btn ghost" href="tel:+5561982216938">Ligar</a>
-      <button class="btn ghost" type="button" data-copy="+5561982216938">Copiar telefone</button>
+      <a class="btn ghost" href="tel:+556135543806">Ligar</a>
+      <button class="btn ghost" type="button" data-copy="+556135543806">Copiar telefone</button>
       <a class="btn whats" 
-   href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" 
-   target="_blank" rel="noopener">
-   Solicitar Orçamento no WhatsApp
-</a>
-    <a class="btn ghost" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/" target="_blank">Ver no mapa</a>
-          <a class="btn primary" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/@-15.8219142,-47.9971568,17z/data=!3m1!4b1!4m6!3m5!1s0x935a2f0718585947:0xc00f86620850ceaf!8m2!3d-15.8219142!4d-47.9945819!16s%2Fg%2F11vys553m3?entry=ttu" target="_blank" rel="noopener">Ver no mapa</a>
+         href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" 
+         target="_blank" rel="noopener">
+         Solicitar Orçamento no WhatsApp
+      </a>
+      <a class="btn ghost" href="https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/" target="_blank" rel="noopener">Ver no mapa</a>
+      <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">Rota até a loja</a>
     </div>
   </div>
 </footer>
@@ -142,16 +183,20 @@
   "@type": "LocalBusiness",
   "name": "Guarámaq Refrigeração",
   "image": "assets/banner.png",
-  "telephone": "+55 61 98221-6938 / (61) 3554-3806",
+  "telephone": "+55 61 3554-3806",
   "areaServed": ["Guará I","Guará II","Brasília-DF"],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Guará",
     "addressRegion": "DF",
-    "streetAddress": "Ver no Google Maps: https://www.google.com/maps/place/GUARAMAQ+REFRIGERA%C3%87%C3%83O/",
     "addressCountry": "BR"
   },
-  "url": "https://SEUUSUARIO.github.io/guaramaq-pages"
+  "url": "https://guaramaq.shop",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+55 61 98221-6938"
+  }]
 }
 </script>
 </body>
