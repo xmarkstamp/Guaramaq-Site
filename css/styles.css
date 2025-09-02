@@ -34,11 +34,17 @@ img{max-width:100%;height:auto;display:block}
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .header .wrap{padding:12px 0}
 
-/* Marca (apenas imagem, sem texto lateral) */
+/* Marca (apenas imagem, sem texto lateral) — LOGO GRANDE */
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{
-  height:90px; /* maior no desktop */
-  width:auto;
+  height:140px !important;  /* desktop grande */
+  width:auto !important;
+}
+@media (max-width:1024px){
+  .brand img{height:110px !important;}
+}
+@media (max-width:640px){
+  .brand img{height:84px !important;}
 }
 
 /* ===== Tipografia base ===== */
@@ -72,47 +78,66 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}
 }
 
-/* ===== Hero refinado ===== */
+/* ===== Hero refinado (sem poluição) ===== */
 .hero{background:#fff;padding:50px 0}
 .hero .grid{
   display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
 }
 
-/* Título com sofisticação e CTA forte */
-.hero-text h1{
-  font-weight:900; margin:0 0 16px; color:#0f172a;
+/* Título sofisticado com 3 linhas (siren + 24h + região) */
+.hero-title{
+  margin:0 0 18px;
+  line-height:1.15;
+  color:#0f172a;
 }
-.hero-text h1 .highlight{
-  display:inline-block;
-  background:linear-gradient(90deg, #2563eb, #0ea5e9);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+.hero-title .title-top{
+  display:flex; align-items:center; gap:10px;
+  font-size:clamp(28px,5vw,48px);
+  font-weight:900;
 }
-.hero-text h1 .sub{
-  display:inline-block; margin-top:6px;
-  font-size:clamp(22px,3.6vw,34px); font-weight:800; color:#1e293b;
+.siren{ /* Sirene SVG destacada */
+  width:38px; height:38px; flex:0 0 38px;
+  filter: drop-shadow(0 4px 8px rgba(37,99,235,.35));
 }
-.hero-text p{font-size:18px;color:#475569;margin:0 0 24px}
+@media (max-width:640px){ .siren{ width:32px; height:32px } }
 
-/* Imagem do hero / banner estático ao lado (desktop) */
-.hero-image img{border-radius:16px; box-shadow:var(--shadow)}
-
-/* ===== Banner Interativo ===== */
-.banner{
-  position:relative; overflow:hidden; border-radius:14px; box-shadow:var(--shadow);
-  margin:20px 0;
+.hero-title .title-mid{
+  display:block; margin-top:4px;
+  font-size:clamp(22px,3.6vw,34px);
+  font-weight:800;
+  letter-spacing:-.2px;
+  color:#1e293b;
 }
+.hero-title .title-bottom{
+  display:block; margin-top:2px;
+  font-size:clamp(18px,3vw,24px);
+  color:#334155;
+  font-weight:700;
+}
+
+.hero-text p{font-size:18px;color:#475569;margin:0 0 22px}
+.hero .actions{display:flex; gap:14px; flex-wrap:wrap}
+
+/* Imagem do hero / banner simples ao lado (desktop) */
+.hero-image .banner{
+  border-radius:14px; overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.hero-image .banner img{
+  width:100%; display:block;
+  transition:transform .45s ease;
+}
+.hero-image .banner:hover img{
+  transform:scale(1.04);
+}
+
+/* ===== Banner Interativo (sem overlay de texto) ===== */
+/* (mantido simples; se no futuro quiser overlay, basta inserir HTML e as regras abaixo)
+.banner{ position:relative; overflow:hidden; border-radius:14px; box-shadow:var(--shadow); margin:20px 0 }
 .banner img{width:100%; display:block; transition:transform .4s ease}
 .banner:hover img{transform:scale(1.05)}
-.banner-overlay{
-  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:20px;
-  background:linear-gradient(180deg, rgba(15,23,42,.55) 0%, rgba(15,23,42,.82) 100%);
-  color:#fff;
-}
-.banner-overlay h2{font-size:clamp(22px, 4vw, 32px); margin-bottom:10px}
-.banner-overlay p{font-size:16px; margin-bottom:16px; color:#e0f2fe}
-.banner-overlay .actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
-.banner-overlay .btn{font-size:15px; padding:12px 18px}
+.banner-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+*/
 
 /* ===== Badges (interativas + tooltip) ===== */
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
@@ -155,7 +180,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .card h3{margin:6px 0 8px}
 .card p{margin:0;color:var(--muted)}
 
-/* ===== Steps / Como funciona (agora links clicáveis) ===== */
+/* ===== Steps / Como funciona (links clicáveis) ===== */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 .step{
   display:block; background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px;
@@ -211,16 +236,16 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .container{max-width:1000px}
 }
 @media (max-width:1024px){
-  .brand img{height:84px} /* logo no tablet */
+  /* logo já ajustada nos breakpoints acima */
 }
 @media (max-width:900px){
   .hero .grid{grid-template-columns:1fr}
   .grid-3,.steps{grid-template-columns:1fr}
+  .hero .actions{justify-content:center}
 }
 @media (max-width:640px){
   /* Header organizado no mobile: empilha e dá largura total aos botões */
   .header .wrap{flex-direction:column;align-items:stretch;gap:10px}
-  .brand img{height:70px} /* logo no celular */
   .actions{display:flex;flex-wrap:wrap;gap:8px}
   .actions .btn{width:100%;justify-content:center}
 
@@ -235,5 +260,4 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
   /* Hero centralizado no mobile */
   .hero .grid{text-align:center}
-  .hero .actions{justify-content:center}
 }
