@@ -29,31 +29,36 @@ img{max-width:100%;height:auto;display:block}
 /* ===== Containers ===== */
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
 .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-
-/* (se o header usar 'header-grid' em vez de 'wrap', já deixo pronto) */
 .header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
 /* ===== Header / Topo ===== */
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .header .wrap{padding:12px 0}
 
-/* Marca — (valores antigos serão sobrescritos por overrides no fim) */
-.brand{display:flex;align-items:center;gap:12px;width:auto}
-.brand img{
-  height:160px !important;         /* destaque no desktop */
-  width:auto !important;
+/* Marca — caixa que corta sobras e evita distorção */
+.header .brand{
+  width:400px;            /* destaque no desktop */
+  height:110px;
+  overflow:hidden;
+  display:flex; align-items:center;
 }
+.header .brand img{
+  width:100% !important; height:100% !important; object-fit:cover; display:block;
+}
+
+/* Tablet */
 @media (max-width:1024px){
-  .brand img{height:120px !important;}
+  .header .brand{ width:340px; height:100px; }
 }
-@media (max-width:640px){
-  .header .container{padding-left:0;padding-right:0} /* full-bleed no topo */
-  .header .wrap{flex-direction:column;align-items:stretch;gap:10px}
-  .brand{width:100%}
-  .brand img{
-    width:100% !important;         /* ocupa de lado a lado no celular */
-    height:auto !important;
-  }
+
+/* Mobile: full-width topo; botões abaixo */
+@media (max-width:768px){
+  .header .wrap,
+  .header-grid{ flex-direction:column; align-items:stretch; gap:12px; }
+  .header .brand{ width:100%; height:120px; }
+  .header .brand img{ width:100% !important; height:100% !important; object-fit:cover; }
+  .header-actions{ width:100%; display:flex; flex-direction:column; gap:10px; }
+  .header-actions .btn{ width:100%; justify-content:center; font-size:16px; padding:14px; }
 }
 
 /* ===== Tipografia base ===== */
@@ -104,9 +109,19 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   font-size:clamp(28px,5vw,48px);
   font-weight:900;
 }
+/* Desktop: não quebrar linha no título */
+@media (min-width:901px){
+  .title-top{ white-space:nowrap; }
+}
+
+/* Sirene com sensação de movimento */
 .siren{
   width:38px; height:38px; flex:0 0 38px;
-  filter: drop-shadow(0 4px 8px rgba(37,99,235,.35));
+  animation:flash 1.4s infinite alternate;
+}
+@keyframes flash{
+  from{ filter: drop-shadow(0 0 4px rgba(14,165,233,.8)); }
+  to  { filter: drop-shadow(0 0 16px rgba(37,99,235,1)); }
 }
 @media (max-width:640px){ .siren{ width:32px; height:32px } }
 
@@ -125,11 +140,20 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 }
 
 .hero-text p{font-size:18px;color:#475569;margin:0 0 22px}
-.hero .actions{display:flex; gap:14px; flex-wrap:wrap}
+
+/* Três botões do HERO na mesma linha no desktop */
+@media (min-width:901px){
+  .hero .actions{ flex-wrap:nowrap; gap:8px; }
+  .hero .actions .btn{ padding:10px 12px; font-size:14px; }
+}
+/* Mobile pode quebrar para não estourar */
+@media (max-width:900px){
+  .hero .actions{ flex-wrap:wrap; }
+}
 
 /* ===== Banner simples e CLICÁVEL (liga ao clicar) ===== */
 .hero-image a.banner{
-  display:block;                   /* garante clique em toda a área */
+  display:block;                   /* clique em toda a área */
   border-radius:14px;
   overflow:hidden;
   box-shadow:var(--shadow);
@@ -182,7 +206,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .card h3{margin:6px 0 8px}
 .card p{margin:0;color:var(--muted)}
 
-/* ===== Steps / Como funciona ===== */
+/* ===== Steps / Como funciona (com ícones) ===== */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 .step{
   display:block; background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px;
@@ -195,8 +219,12 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   border-color:rgba(37,99,235,.35);
 }
 .step h4{margin:0 0 6px; font-size:18px; display:flex; align-items:center; gap:8px}
-.step h4::before{
-  content:""; display:inline-block; width:10px; height:10px; border-radius:999px; background:var(--brand);
+.step h4 .icon{
+  font-size:20px;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:999px;
+  background:rgba(37,99,235,.08);
+  margin-right:2px;
 }
 .step .meta{display:flex; align-items:center; gap:10px; margin-top:10px; font-size:14px; color:#334155}
 .step .cta{
@@ -205,9 +233,22 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 }
 .step .cta::after{content:"→"}
 
-.step.is-contact h4::before{background:#16a34a}  /* WhatsApp */
-.step.is-diagnose h4::before{background:#2563eb} /* Ligação */
-.step.is-repair h4::before{background:#f59e0b}   /* Rota */
+.step.is-contact h4 .icon{ background:rgba(22,163,74,.12); }   /* WhatsApp */
+.step.is-diagnose h4 .icon{ background:rgba(37,99,235,.12); }  /* Ligação */
+.step.is-repair h4 .icon{ background:rgba(245,158,11,.15); }   /* Rota */
+
+/* ===== Quem Somos (SEO) ===== */
+.about p{
+  max-width: 86ch;
+}
+
+/* ===== Depoimentos ===== */
+.testimonials .card{
+  min-height:140px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.testimonials .card p{ margin-bottom:10px; }
+.testimonials .card strong{ color:#0f172a; font-size:14px; }
 
 /* ===== Form ===== */
 form{display:grid;gap:12px;max-width:560px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
@@ -232,7 +273,7 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   *{transition:none !important; animation:none !important}
 }
 
-/* ===== Responsividade ===== */
+/* ===== Responsividade geral ===== */
 @media (max-width:1180px){
   .container{max-width:1000px}
 }
@@ -252,66 +293,4 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
   /* Hero centralizado no mobile */
   .hero .grid{text-align:center}
-}
-
-/* =========================================================
-   OVERRIDES DA LOGO — CORTA SOBRAS E EVITA DISTORÇÃO
-   (mantém a identidade visual sem empurrar o layout)
-   ========================================================= */
-
-/* PC/Desktop: caixa de 400x110 (ajuste à vontade) */
-.header .brand{
-  width:400px;             /* largura alvo no PC */
-  height:110px;            /* altura alvo no PC */
-  overflow:hidden;         /* corta a “faixa branca” do PNG */
-  display:flex;
-  align-items:center;
-}
-.header .brand img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:cover;        /* preenche e corta o excesso SEM distorcer */
-  display:block;
-}
-
-/* Tablet */
-@media (max-width:1024px){
-  .header .brand{
-    width:340px;
-    height:100px;
-  }
-}
-
-/* Mobile: full-width no topo; botões empilhados abaixo */
-@media (max-width:768px){
-  /* se usar wrap OU header-grid, empilha tudo */
-  .header .wrap,
-  .header-grid{
-    flex-direction:column;
-    align-items:stretch;
-    gap:12px;
-  }
-
-  .header .brand{
-    width:100%;
-    height:120px;          /* altura do cabeçalho no celular */
-  }
-  .header .brand img{
-    width:100% !important;
-    height:100% !important;
-    object-fit:cover;
-  }
-
-  .header-actions{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .header-actions .btn{
-    width:100%;
-    justify-content:center;
-    font-size:16px;
-    padding:14px;
-  }
 }
