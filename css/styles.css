@@ -409,5 +409,14 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .logo-desktop { display:none; }
   .logo-mobile { display:block; }
 }
+/* Mostra logo desktop por padrão */
+.logo-desktop { display:block; }
+.logo-mobile  { display:none;  }
+
+/* Troca para mobile/tablet */
+@media (max-width:1024px){
+  .logo-desktop { display:none; }
+  .logo-mobile  { display:block; }
+}
 
 }
