@@ -34,10 +34,10 @@ img{max-width:100%;height:auto;display:block}
 /* ===== Header / Topo ===== */
 .header{
   position:sticky; top:0; z-index:50;
-  background: linear-gradient(90deg, #001f4d 0%, #004080 100%); /* <<< alterado */
+  background: linear-gradient(180deg, #0066cc 0%, #004080 100%); /* claro em cima → escuro embaixo */
   border-bottom:1px solid rgba(255,255,255,.12);
   box-shadow:0 4px 12px rgba(0,0,0,.15);
-  min-height:170px; /* altura p/ comportar a logo maior */
+  min-height:170px;
 }
 .header .wrap{padding:12px 0}
 
