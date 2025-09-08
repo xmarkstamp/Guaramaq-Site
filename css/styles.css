@@ -1,5 +1,5 @@
 /* =========================
-   Guarámaq • styles.css (v7)
+   Guarámaq • styles.css (v7+)
    ========================= */
 
 /* ===== Variáveis ===== */
@@ -31,7 +31,7 @@ img{max-width:100%;height:auto;display:block}
 .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
-/* ===== Header / Topo (com gradiente) ===== */
+/* ===== Header / Topo (gradiente) ===== */
 .header{
   position:sticky;top:0;z-index:50;
   background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
@@ -52,72 +52,7 @@ img{max-width:100%;height:auto;display:block}
   filter:drop-shadow(0 2px 4px rgba(0,0,0,.3)); /* leve destaque no gradiente */
 }
 
-/* Botões no cabeçalho com alto contraste */
-.header-actions .btn{
-  font-size:14px;
-  border-radius:999px;
-  font-weight:700;
-  transition:.2s ease;
-  border:1px solid transparent;
-}
-.btn.ghost{
-  background:transparent;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.5);
-}
-.btn.ghost:hover{
-  background:rgba(255,255,255,.15);
-  border-color:#fff;
-}
-.btn.whats{
-  background:#25D366;
-  color:#06220f;
-}
-.btn.whats:hover{
-  background:#16a34a; color:#fff;
-}
-.btn.primary{
-  background:#fff;
-  color:#003C92;
-  border:1px solid #fff;
-}
-.btn.primary:hover{
-  background:#f1f5f9;
-  color:#003C92;
-}
-
-/* Tablet */
-@media (max-width:1024px){
-  .header .brand{ width:340px; height:100px; }
-}
-
-/* Mobile: full-width topo; botões abaixo */
-@media (max-width:768px){
-  .header .wrap,
-  .header-grid{ flex-direction:column; align-items:stretch; gap:12px; }
-  .header .brand{ width:100%; height:120px; }
-  .header .brand img{ width:100% !important; height:100% !important; object-fit:cover; }
-}
-
-/* ===== Hambúrguer (mobile) ===== */
-.hamb{display:none;gap:4px;background:transparent;border:0;cursor:pointer}
-.hamb__bar{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
-@media (max-width:768px){
-  .hamb{display:inline-flex;align-items:center;justify-content:center}
-  .header-grid{flex-wrap:wrap}
-  .header-actions{width:100%;display:none}
-  .header-actions.is-open{display:flex;flex-direction:column;gap:10px}
-  .header-actions .btn{ width:100%; justify-content:center; font-size:16px; padding:14px; }
-}
-
-/* ===== Tipografia base ===== */
-h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,48px);line-height:1.15}
-h2{margin:0 0 18px;font-size:28px}
-h3{margin:0 0 8px;font-size:20px}
-h4{margin:0 0 6px;font-size:16px}
-p{margin:0 0 14px;font-size:16px;color:#334155}
-
-/* ===== Botões (base) ===== */
+/* ===== Botões base ===== */
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -141,6 +76,82 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}
 }
 
+/* ===== Override de contraste no HEADER ===== */
+.header .header-actions .btn{
+  border-radius:999px;
+  font-weight:800;
+  box-shadow:none;
+}
+.header .btn.ghost{
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.7);
+}
+.header .btn.ghost:hover,.header .btn.ghost:focus{
+  background:rgba(255,255,255,.14);
+  border-color:#fff; color:#fff;
+}
+.header .btn.whats{
+  background:#25D366; color:#06220f;
+  border:1px solid rgba(255,255,255,.2);
+}
+.header .btn.whats:hover,.header .btn.whats:focus{
+  background:#16a34a; color:#fff;
+}
+.header .btn.primary{
+  background:#fff; color:#003C92; border:1px solid #fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+.header .btn.primary:hover,.header .btn.primary:focus{
+  background:#f1f5f9; color:#003C92;
+}
+.header :focus-visible{
+  outline:3px solid rgba(255,255,255,.85);
+  outline-offset:2px; border-radius:999px;
+}
+
+/* ===== Hambúrguer (mobile) ===== */
+.hamb{display:none;gap:6px;background:transparent;border:0;cursor:pointer;padding:8px}
+.hamb__bar{
+  display:block;width:24px;height:2px;background:#fff;border-radius:2px;
+  transition:transform .25s ease, opacity .2s ease, background .2s ease;
+  transform-origin:center;
+}
+.hamb.is-active .hamb__bar:nth-child(1){ transform:translateY(8px) rotate(45deg) }
+.hamb.is-active .hamb__bar:nth-child(2){ opacity:0 }
+.hamb.is-active .hamb__bar:nth-child(3){ transform:translateY(-8px) rotate(-45deg) }
+
+/* Tablet */
+@media (max-width:1024px){
+  .header .brand{ width:340px; height:100px; }
+}
+
+/* Mobile: full-width topo; botões abaixo */
+@media (max-width:768px){
+  .header .wrap, .header-grid{ flex-direction:column; align-items:stretch; gap:12px; }
+  .header .brand{ width:100%; height:120px; }
+  .header .brand img{ width:100% !important; height:100% !important; object-fit:cover; }
+
+  .hamb{display:inline-flex;align-items:center;justify-content:center}
+  .header-grid{flex-wrap:wrap}
+  .header-actions{width:100%;display:none}
+  .header-actions.is-open{
+    display:flex;flex-direction:column;gap:10px;
+    background:rgba(0,0,0,.12);
+    backdrop-filter:saturate(130%) blur(4px);
+    padding:10px;border-radius:14px;
+    border:1px solid rgba(255,255,255,.15);
+  }
+  .header-actions .btn{ width:100%; justify-content:center; font-size:16px; padding:14px; }
+}
+
+/* ===== Tipografia base ===== */
+h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,48px);line-height:1.15}
+h2{margin:0 0 18px;font-size:28px}
+h3{margin:0 0 8px;font-size:20px}
+h4{margin:0 0 6px;font-size:16px}
+p{margin:0 0 14px;font-size:16px;color:#334155}
+
 /* ===== Hero ===== */
 .hero{background:#fff;padding:50px 0}
 .hero .grid{
@@ -148,26 +159,16 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 }
 
 /* Título em 3 linhas com sirene SVG */
-.hero-title{
-  margin:0 0 18px;
-  line-height:1.15;
-  color:#0f172a;
-}
+.hero-title{ margin:0 0 18px; line-height:1.15; color:#0f172a; }
 .hero-title .title-top{
   display:flex; align-items:center; gap:10px;
   font-size:clamp(28px,5vw,48px);
   font-weight:900;
 }
-/* Desktop: não quebrar linha no título */
-@media (min-width:901px){
-  .title-top{ white-space:nowrap; }
-}
+@media (min-width:901px){ .title-top{ white-space:nowrap; } }
 
 /* Sirene com sensação de movimento */
-.siren{
-  width:38px; height:38px; flex:0 0 38px;
-  animation:flash 1.4s infinite alternate;
-}
+.siren{ width:38px; height:38px; flex:0 0 38px; animation:flash 1.4s infinite alternate; }
 @keyframes flash{
   from{ filter: drop-shadow(0 0 4px rgba(14,165,233,.8)); }
   to  { filter: drop-shadow(0 0 16px rgba(37,99,235,1)); }
@@ -177,48 +178,33 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .hero-title .title-mid{
   display:block; margin-top:4px;
   font-size:clamp(22px,3.6vw,34px);
-  font-weight:800;
-  letter-spacing:-.2px;
-  color:#1e293b;
+  font-weight:800; letter-spacing:-.2px; color:#1e293b;
 }
 .hero-title .title-bottom{
   display:block; margin-top:2px;
   font-size:clamp(18px,3vw,24px);
-  color:#334155;
-  font-weight:700;
+  color:#334155; font-weight:700;
 }
-
 .hero-text p{font-size:18px;color:#475569;margin:0 0 22px}
 
-/* Três botões do HERO na mesma linha no desktop */
+/* Botões do HERO na mesma linha no desktop */
 @media (min-width:901px){
   .hero .actions{ flex-wrap:nowrap; gap:8px; }
   .hero .actions .btn{ padding:10px 12px; font-size:14px; }
 }
-/* Mobile pode quebrar para não estourar */
-@media (max-width:900px){
-  .hero .actions{ flex-wrap:wrap; }
-}
+@media (max-width:900px){ .hero .actions{ flex-wrap:wrap; } }
 
-/* ===== Banner simples e CLICÁVEL ===== */
-.hero-image a.banner{
-  display:block;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.hero-image a.banner img{
-  width:100%; display:block;
-  transition:transform .45s ease;
-}
-.hero-image a.banner:hover img{ transform:scale(1.04); }
+/* ===== Banner clicável ===== */
+.hero-image a.banner{ display:block; border-radius:14px; overflow:hidden; box-shadow:var(--shadow) }
+.hero-image a.banner img{ width:100%; display:block; transition:transform .45s ease }
+.hero-image a.banner:hover img{ transform:scale(1.04) }
 
-/* ===== Badges (interativas + tooltip) ===== */
+/* ===== Badges com tooltip ===== */
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
 .badge{
   background:#e2e8f0;color:#0f172a;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:600;
   border:1px solid rgba(15,23,42,.06);position:relative;cursor:pointer;
-  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border .18s ease;
+  transition:transform .18s, box-shadow .18s, background .18s, border .18s;
   outline:0;
 }
 .badge:hover,.badge:focus-visible{
@@ -233,8 +219,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   transform:translateX(-50%) translateY(6px);
   padding:8px 10px; font-size:12px; color:#0f172a; background:#fff;
   border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 10px 24px rgba(2,6,23,.12);
-  opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease;
-  white-space:nowrap; z-index:20;
+  opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; white-space:nowrap; z-index:20;
 }
 .badge[data-tip]:hover::after,.badge[data-tip]:focus-visible::after{
   opacity:1; transform:translateX(-50%) translateY(0);
@@ -253,7 +238,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .card h3{margin:6px 0 8px}
 .card p{margin:0;color:var(--muted)}
 
-/* ===== Steps / Como funciona (com ícones) ===== */
+/* ===== Steps / Como funciona ===== */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 .step{
   display:block; background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px;
@@ -267,19 +252,12 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 }
 .step h4{margin:0 0 6px; font-size:18px; display:flex; align-items:center; gap:8px}
 .step h4 .icon{
-  font-size:20px;
-  display:inline-flex; align-items:center; justify-content:center;
-  width:26px; height:26px; border-radius:999px;
-  background:rgba(37,99,235,.08);
-  margin-right:2px;
+  font-size:20px; display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:999px; background:rgba(37,99,235,.08); margin-right:2px;
 }
 .step .meta{display:flex; align-items:center; gap:10px; margin-top:10px; font-size:14px; color:#334155}
-.step .cta{
-  margin-top:12px; display:inline-flex; align-items:center; gap:8px;
-  font-weight:700; color:var(--brand);
-}
+.step .cta{ margin-top:12px; display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--brand) }
 .step .cta::after{content:"→"}
-
 .step.is-contact h4 .icon{ background:rgba(22,163,74,.12); }   /* WhatsApp */
 .step.is-diagnose h4 .icon{ background:rgba(37,99,235,.12); }  /* Ligação */
 .step.is-repair h4 .icon{ background:rgba(245,158,11,.15); }   /* Rota */
@@ -312,14 +290,10 @@ footer .wrap{padding:22px 0;display:flex;align-items:center;justify-content:spac
 footer .actions .btn{border-color:rgba(255,255,255,.2)}
 footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
-/* ===== Marcas / Fabricantes (nova seção) ===== */
+/* ===== Marcas / Fabricantes ===== */
 .brands{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .brands__subtitle{margin:0 0 16px;color:#334155;max-width:90ch}
-.brands__grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
-}
+.brands__grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:14px }
 .brand{
   display:grid;place-items:center;
   background:#fff;border:1px solid var(--border);border-radius:12px;
@@ -328,12 +302,8 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease, filter .2s ease;
 }
 .brand img{max-height:52px; width:auto; transition:transform .2s ease}
-.brand:hover{
-  transform:translateY(-2px);
-  border-color:rgba(37,99,235,.35);
-  box-shadow:0 16px 28px rgba(2,6,23,.12);
-}
-.brand:hover img{ transform:scale(1.06) } /* pequeno zoom ao passar o mouse */
+.brand:hover{ transform:translateY(-2px); border-color:rgba(37,99,235,.35); box-shadow:0 16px 28px rgba(2,6,23,.12) }
+.brand:hover img{ transform:scale(1.06) }
 
 .visually-hidden{
   position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;
