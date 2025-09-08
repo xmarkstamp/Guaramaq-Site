@@ -359,44 +359,43 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   transform-origin:center;
 }
 
-/* Mobile: pode ter um pouco mais de recorte/zoom */
+/* ===== PATCH MOBILE: logo maior sem cortar o "Q" ===== */
 @media (max-width:768px){
-  :root{
-    --logoCropTop: 20%;
-    --logoCropRight: 10%;
-    --logoCropBottom: 20%;
-    --logoCropLeft: 10%;
-    --logoScale: 1.22;
-  }
-/* ===== Mobile: logo maior no limite do header ===== */
-@media (max-width:768px){
-  /* aumenta a área útil da logo no celular */
   .header{ min-height:auto; padding-top:10px; }
+
   .header .brand{
     width:100%;
-    height:210px;            /* ↑ mais alto só no mobile */
-    overflow:hidden;         /* garante o corte do zoom */
+    height:220px;         /* altura para a logo crescer; ajuste se quiser */
+    overflow:hidden;      /* recorta só o que sobrar do zoom */
   }
+
   .header .brand img{
     width:auto !important;
     height:100% !important;
     max-height:none !important;
     object-fit:contain !important;
-    /* corta mais as bordas transparentes no mobile */
-    clip-path: inset(22% 12% 22% 12%);
-    /* dá mais zoom no conteúdo útil */
-    transform: scale(1.28);
-    transform-origin:center;
+
+    /* Recorte menos agressivo à esquerda para preservar o "Q" */
+    /*   top   right bottom left  */
+    clip-path: inset(18% 10% 18% 0%);
+
+    /* Zoom suficiente para “vencer” a área transparente */
+    transform: scale(1.26);
+    transform-origin: left center;   /* pivô na esquerda */
+
+    /* Posição favorece o lado esquerdo (onde está o "Q") */
+    object-position: left center;
+
     margin:0 auto;
     display:block;
   }
 }
 
-/* Extra para telas MUITO estreitas */
-@media (max-width:380px){
-  .header .brand{ height:230px; }    /* um pouquinho mais alto */
-  .header .brand img{
-    clip-path: inset(24% 12% 24% 12%);
-    transform: scale(1.32);
+/* Fallback se clip-path não for suportado pelo browser */
+@supports not (clip-path: inset(10%)){
+  @media (max-width:768px){
+    .header .brand img{
+      transform: scale(1.26) translateX(-6%);  /* “come” a sobra transparente da esquerda */
+    }
   }
 }
