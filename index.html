@@ -7,41 +7,74 @@
   <meta name="description" content="Assistência técnica em geladeiras, freezers, máquinas de lavar, micro-ondas e purificadores. Atendimento 24h no Guará (Brasília-DF), garantia por escrito e profissionais certificados.">
   <meta property="og:title" content="Guarámaq Refrigeração — 24h">
   <meta property="og:description" content="Seu aparelho parou? Ligue agora ou chame no WhatsApp. Atendimento rápido com garantia.">
-  <meta property="og:image" content="ativos/banner.png">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="CSS/styles.css" as="style">
-  <link rel="stylesheet" href="CSS/styles.css?v=7">
+  <meta property="og:image" content="assets/banner.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="stylesheet" href="css/styles.css?v=5">
   <script defer src="js/main.js"></script>
   <meta name="format-detection" content="telephone=yes">
+
+  <!-- Overrides mínimos para não precisar mexer no styles.css -->
+  <style>
+    /* 1) Título sem quebra no desktop */
+    @media (min-width: 901px){
+      .title-top{ white-space: nowrap; }
+    }
+
+    /* 2) Sirene com sensação de movimento (brilho pulsante) */
+    .siren{ animation: flash 1.4s infinite alternate; }
+    @keyframes flash{
+      from { filter: drop-shadow(0 0 4px rgba(14,165,233,.8)); }
+      to   { filter: drop-shadow(0 0 16px rgba(37,99,235,1)); }
+    }
+
+    /* 3) Três botões do HERO na mesma linha no desktop */
+    @media (min-width: 901px){
+      .hero .actions{ flex-wrap: nowrap; gap:8px; }
+      .hero .actions .btn{ padding:10px 12px; font-size:14px; }
+    }
+    /* Mobile continua podendo quebrar linha para não estourar */
+    @media (max-width: 900px){
+      .hero .actions{ flex-wrap: wrap; }
+    }
+
+    /* 4) Ícones no "Como funciona" */
+    .step h4 .icon{
+      font-size: 20px;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:26px; height:26px; border-radius:999px;
+      background:rgba(37,99,235,.08); margin-right:6px;
+    }
+
+    /* 5) Depoimentos: grid bonitinho e legível */
+    .testimonials .card{
+      min-height: 140px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .testimonials .card p{ margin-bottom:10px; }
+    .testimonials .card strong{ color:#0f172a; font-size:14px; }
+  </style>
 </head>
 <body>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
   <div class="container header-grid">
-    <!-- LOGO (fundo transparente) -->
+    <!-- LOGO (já corrigida no CSS global) -->
     <a class="brand" href="/" aria-label="Guarámaq - Página inicial">
-      <img src="ativos/logotipo-transparente.png" alt="Guarámaq Assistência Técnica e Refrigeração">
+      <!-- ALTERAÇÃO: usa a versão com fundo transparente -->
+      <img src="assets/logotipo-transparente.png" alt="Guarámaq Assistência Técnica e Refrigeração">
     </a>
 
-    <!-- MENU HAMBÚRGUER (mobile) -->
-    <button class="hamb" aria-label="Abrir menu" aria-controls="top-actions" aria-expanded="false">
-      <span class="hamb__bar"></span>
-      <span class="hamb__bar"></span>
-      <span class="hamb__bar"></span>
-    </button>
-
-    <!-- AÇÕES (telefone, WhatsApp, rota) -->
-    <div class="header-actions actions" id="top-actions">
+    <!-- AÇÕES À DIREITA (PC) / EMPILHADAS (Mobile) -->
+    <div class="header-actions actions">
       <a class="btn ghost" href="tel:+556135543806" aria-label="Ligar para Guarámaq">(61) 3554-3806</a>
       <a class="btn whats" 
-         href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
+         href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
          target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
          WhatsApp: (61) 98221-6938
       </a>
-      <a class="btn primary" 
-         href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819"
-         target="_blank" rel="noopener">
+      <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819" target="_blank" rel="noopener">
         Rota até a loja
       </a>
     </div>
@@ -83,7 +116,7 @@
         <div class="actions">
           <a class="btn primary pulse" href="tel:+556135543806" aria-label="Ligar agora para Guarámaq">📞 Ligue Agora</a>
           <a class="btn whats" 
-             href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
+             href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
              target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
              💬 WhatsApp Orçamento
           </a>
@@ -102,88 +135,35 @@
       <!-- Banner CLICÁVEL (liga direto) – sem overlay de texto -->
       <div class="hero-image">
         <a class="banner" href="tel:+556135543806" aria-label="Ligar para Guarámaq">
-          <img src="ativos/banner.png" alt="Técnico de refrigeração, Guarámaq Refrigeração">
+          <img src="assets/banner.png" alt="Técnico de refrigeração, Guarámaq Refrigeração">
         </a>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= FABRICANTES / MARCAS (ACIMA do Como funciona) ================= -->
+  <!-- ================= FABRICANTES / MARCAS (INSERIDO) ================= -->
   <section class="section brands" aria-labelledby="brands-title">
     <div class="container">
       <h2 id="brands-title">Assistência Técnica Profissional</h2>
       <p class="brands__subtitle">
         Trabalhamos com os principais fabricantes de <strong>geladeiras</strong>, <strong>freezers</strong>,
-        <strong>máquinas de lavar</strong>, <strong>micro-ondas</strong> e <strong>purificadores</strong> no Guará e região.
-        Técnicos certificados, peças com procedência e <strong>garantia por escrito</strong>.
+        <strong>máquinas de lavar</strong>, <strong>micro-ondas</strong> e <strong>purificadores</strong>.
       </p>
-
       <div class="brands__grid">
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Brastemp%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Brastemp" target="_blank" rel="noopener">
-          <img src="ativos/brastemp.png" alt="Assistência técnica Brastemp no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Electrolux%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Electrolux" target="_blank" rel="noopener">
-          <img src="ativos/electrolux.png" alt="Assistência técnica Electrolux no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20LG%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento LG" target="_blank" rel="noopener">
-          <img src="ativos/lg.png" alt="Assistência técnica LG no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Consul%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Consul" target="_blank" rel="noopener">
-          <img src="ativos/consul.png" alt="Assistência técnica Consul no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Samsung%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Samsung" target="_blank" rel="noopener">
-          <img src="ativos/samsung.png" alt="Assistência técnica Samsung no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Midea%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Midea" target="_blank" rel="noopener">
-          <img src="ativos/midea.png" alt="Assistência técnica Midea no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Soft%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Soft" target="_blank" rel="noopener">
-          <img src="ativos/soft.png" alt="Assistência técnica Soft purificadores no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Panasonic%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Panasonic" target="_blank" rel="noopener">
-          <img src="ativos/panasonic.png" alt="Assistência técnica Panasonic no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Continental%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Continental" target="_blank" rel="noopener">
-          <img src="ativos/continental.png" alt="Assistência técnica Continental no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Metalfrio%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Metalfrio" target="_blank" rel="noopener">
-          <img src="ativos/metalfrio.png" alt="Assistência técnica Metalfrio no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Philco%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Philco" target="_blank" rel="noopener">
-          <img src="ativos/philco.png" alt="Assistência técnica Philco no Guará" width="160" height="64" loading="lazy">
-        </a>
-
-        <a class="brand" href="https://wa.me/5561982216938?text=Ol%C3%A1%2C%20tenho%20um%20aparelho%20Bosch%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." aria-label="Orçamento Bosch" target="_blank" rel="noopener">
-          <img src="ativos/bosch.png" alt="Assistência técnica Bosch no Guará" width="160" height="64" loading="lazy">
-        </a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Brastemp%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/brastemp.png" alt="Assistência técnica Brastemp no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Electrolux%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/electrolux.png" alt="Assistência técnica Electrolux no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20LG%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/lg.png" alt="Assistência técnica LG no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Consul%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/consul.png" alt="Assistência técnica Consul no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Samsung%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/samsung.png" alt="Assistência técnica Samsung no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Midea%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/midea.png" alt="Assistência técnica Midea no Guará"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Soft%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/soft.png" alt="Assistência técnica Soft Purificadores"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Panasonic%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/panasonic.png" alt="Assistência técnica Panasonic"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Continental%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/continental.png" alt="Assistência técnica Continental"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Metalfrio%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/metalfrio.png" alt="Assistência técnica Metalfrio"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Philco%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/philco.png" alt="Assistência técnica Philco"></a>
+        <a class="brand" href="https://wa.me/5561982216938?text=Olá,%20tenho%20um%20aparelho%20Bosch%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener"><img src="assets/bosch.png" alt="Assistência técnica Bosch"></a>
       </div>
-
-      <!-- SEO extra local (invisível) -->
-      <ul class="visually-hidden">
-        <li>Assistência técnica Brastemp no Guará</li>
-        <li>Assistência técnica Electrolux no Guará</li>
-        <li>Assistência técnica LG no Guará</li>
-        <li>Assistência técnica Consul no Guará</li>
-        <li>Assistência técnica Samsung no Guará</li>
-        <li>Assistência técnica Midea no Guará</li>
-        <li>Assistência técnica Soft purificadores</li>
-        <li>Assistência técnica Panasonic</li>
-        <li>Assistência técnica Continental</li>
-        <li>Assistência técnica Metalfrio</li>
-        <li>Assistência técnica Philco</li>
-        <li>Assistência técnica Bosch</li>
-      </ul>
     </div>
   </section>
 
@@ -212,7 +192,7 @@
       <div class="steps">
         <!-- 1) Contato → WhatsApp -->
         <a class="step is-contact"
-           href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
+           href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
            target="_blank" rel="noopener" aria-label="Abrir WhatsApp para contato">
           <h4><span class="icon">💬</span>Contato</h4>
           <p>Chame no WhatsApp e descreva o problema do aparelho. Resposta rápida.</p>
@@ -262,7 +242,7 @@
       <p>
         Precisa de <strong>assistência técnica 24h</strong> no Guará? 
         <a href="tel:+556135543806"><strong>Ligue agora</strong></a> ou 
-        fale pelo <a href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq" target="_blank" rel="noopener"><strong>WhatsApp</strong></a>.
+        fale pelo <a href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq" target="_blank" rel="noopener"><strong>WhatsApp</strong></a>.
       </p>
     </div>
   </section>
@@ -318,7 +298,7 @@
       <a class="btn ghost" href="tel:+556135543806">Ligar</a>
       <button class="btn ghost" type="button" data-copy="+556135543806">Copiar telefone</button>
       <a class="btn whats" 
-         href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
+         href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
          target="_blank" rel="noopener">
          Solicitar Orçamento no WhatsApp
       </a>
@@ -333,7 +313,7 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Guarámaq Refrigeração",
-  "image": "ativos/banner.png",
+  "image": "assets/banner.png",
   "telephone": "+55 61 3554-3806",
   "areaServed": ["Guará I","Guará II","Brasília-DF"],
   "address": {
