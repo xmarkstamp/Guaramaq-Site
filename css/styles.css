@@ -37,24 +37,23 @@ img{max-width:100%;height:auto;display:block}
   background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
   border-bottom:1px solid rgba(255,255,255,.12);
   box-shadow:0 4px 12px rgba(0,0,0,.15);
-  min-height:200px; /* ↑ mais alto para caber logo gigante */
+  min-height:132px; /* dá “corpo” para caber logo grande e botões */
 }
 .header .wrap{padding:12px 0}
 
-/* LOGO — super gigante e fluida */
+/* LOGO — sem fundo e grande */
 .header .brand{
-  width: clamp(420px, 60vw, 900px);   /* cresce até 900px no desktop */
-  height: clamp(140px, 18vw, 200px);  /* até 200px no desktop */
+  width:500px;              /* antes 460px → aumentada */
+  height:140px;             /* antes 130px → aumentada */
   display:flex; align-items:center;
-  overflow:visible;
+  overflow:hidden;
   background:transparent !important;
   box-shadow:none !important;
   border:0 !important;
-  flex: 1 1 auto;
 }
 .header .brand img{
   width:100% !important;
-  height:100% !important;
+  height:auto !important;
   max-height:100%;
   object-fit:contain !important;
   background:transparent !important;
@@ -68,11 +67,10 @@ img{max-width:100%;height:auto;display:block}
   .header .brand:hover img{ transform:scale(1.06); }
 }
 
-/* AÇÕES dentro do header (adaptáveis) */
-.header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* AÇÕES dentro do header (direita no desktop) */
 .header-actions{
   display:flex; align-items:center; justify-content:flex-end;
-  gap:10px; flex-wrap:wrap;
+  gap:10px; flex-wrap:nowrap;
 }
 .header .header-actions .btn{
   border-radius:999px; font-weight:800; box-shadow:none;
@@ -87,7 +85,7 @@ img{max-width:100%;height:auto;display:block}
 }
 .header .btn.whats:hover{ background:#16a34a; color:#fff; }
 
-/* >>> Botão Rota com pulsar e mais destaque <<< */
+/* >>> ALTERAÇÃO PEDIDA: botão Rota com pulsar e mais destaque <<< */
 .header .btn.primary{
   background:#fff; color:#003C92; border:2px solid #fff; /* 2px */
   box-shadow:0 4px 10px rgba(0,0,0,.12);
@@ -98,23 +96,15 @@ img{max-width:100%;height:auto;display:block}
 
 /* Tablet */
 @media (max-width:1024px){
-  .header{ min-height:190px; }
-  .header .brand{
-    width: clamp(360px, 68vw, 820px);
-    height: clamp(130px, 20vw, 190px);
-  }
+  .header .brand{ width:400px; height:130px; }
 }
 
-/* Mobile: logo grande e botões abaixo */
+/* Mobile: logo grande e botões dentro do header, em linhas */
 @media (max-width:768px){
   .header-grid{ flex-direction:column; align-items:stretch; gap:10px; }
   .header{ min-height:auto; padding-top:10px; }
-  .header .brand{
-    width:100%;
-    height: clamp(140px, 30vw, 220px); /* ↑ maior no mobile */
-    max-height: 220px;
-  }
-  .header .brand img{ width:100% !important; height:100% !important; object-fit:contain !important; margin:0 auto; }
+  .header .brand{ width:100%; height:auto; max-height:160px; }
+  .header .brand img{ width:100% !important; height:auto !important; max-height:140px; object-fit:contain !important; margin:0 auto; }
   .header-actions{ width:100%; flex-wrap:wrap; justify-content:center; padding:0 0 10px; gap:10px; }
   .header-actions .btn{ flex:1 1 auto; min-width:44%; justify-content:center; font-size:16px; padding:14px; }
 }
@@ -288,57 +278,46 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 /* =======================================================================
    Seção Marcas/Fabricantes (grid + hover zoom + responsivo)
    ======================================================================= */
-.brands {
-  background:#fff;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border)
-}
-.brands__subtitle {
-  margin:0 0 16px;
-  color:#334155;
-  max-width:90ch
-}
-.brands__grid {
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px
-}
-.brand {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px;
-  height:86px;
-  box-shadow:0 4px 10px rgba(2,6,23,.06);
+.brands{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.brands__subtitle{margin:0 0 16px;color:#334155;max-width:90ch}
+.brands__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.brand{
+  display:grid;place-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:14px;height:86px;box-shadow:0 4px 10px rgba(2,6,23,.06);
   transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease;
-  overflow:hidden; /* garante que a logo não ultrapasse */
 }
-.brand img {
-  width:100%;              /* ocupa a largura total do card */
-  height:100%;             /* ocupa a altura total */
-  object-fit:contain;      /* mantém proporção */
-  transition:transform .2s ease;
-}
-.brand:hover {
-  transform:translateY(-2px);
-  border-color:rgba(37,99,235,.35);
-  box-shadow:0 16px 28px rgba(2,6,23,.12)
-}
-.brand:hover img {transform:scale(1.06)}
+.brand img{max-height:52px;width:auto;object-fit:contain;transition:transform .2s ease}
+.brand:hover{transform:translateY(-2px);border-color:rgba(37,99,235,.35);box-shadow:0 16px 28px rgba(2,6,23,.12)}
+.brand:hover img{transform:scale(1.06)}
 
-@media (max-width:1180px){
-  .brands__grid{grid-template-columns:repeat(5,1fr)}
-}
+@media (max-width:1180px){.brands__grid{grid-template-columns:repeat(5,1fr)}}
 @media (max-width:900px){
   .brands__grid{grid-template-columns:repeat(3,1fr)}
   .brand{height:80px;padding:12px}
+  .brand img{max-height:46px}
 }
 @media (max-width:640px){
   .brands__grid{grid-template-columns:repeat(2,1fr)}
   .brand{height:76px}
+  .brand img{max-height:42px}
 }
 
+/* Ajuste individual de logos menores */
+.brand img[src*="brastemp"],
+.brand img[src*="soft"],
+.brand img[src*="panasonic"],
+.brand img[src*="continental"],
+.brand img[src*="metalfrio"]{
+  max-height:80px !important;   /* maior que o padrão (52px) */
+  transform:scale(1.15);        /* leve aumento */
+}
+@media (max-width:900px){
+  .brand img[src*="brastemp"],
+  .brand img[src*="soft"],
+  .brand img[src*="panasonic"],
+  .brand img[src*="continental"],
+  .brand img[src*="metalfrio"]{
+    max-height:70px !important;
+    transform:scale(1.1);
+  }
 }
