@@ -288,75 +288,57 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 /* =======================================================================
    Seção Marcas/Fabricantes (grid + hover zoom + responsivo)
    ======================================================================= */
-.brands{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.brands__subtitle{margin:0 0 16px;color:#334155;max-width:90ch}
-.brands__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.brand{
-  display:grid;place-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;
-  padding:14px;height:86px;box-shadow:0 4px 10px rgba(2,6,23,.06);
-  transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease;
+.brands {
+  background:#fff;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border)
 }
-.brand img{max-height:52px;width:auto;object-fit:contain;transition:transform .2s ease}
-.brand:hover{transform:translateY(-2px);border-color:rgba(37,99,235,.35);box-shadow:0 16px 28px rgba(2,6,23,.12)}
-.brand:hover img{transform:scale(1.06)}
+.brands__subtitle {
+  margin:0 0 16px;
+  color:#334155;
+  max-width:90ch
+}
+.brands__grid {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px
+}
+.brand {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  height:86px;
+  box-shadow:0 4px 10px rgba(2,6,23,.06);
+  transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease;
+  overflow:hidden; /* garante que a logo não ultrapasse */
+}
+.brand img {
+  width:100%;              /* ocupa a largura total do card */
+  height:100%;             /* ocupa a altura total */
+  object-fit:contain;      /* mantém proporção */
+  transition:transform .2s ease;
+}
+.brand:hover {
+  transform:translateY(-2px);
+  border-color:rgba(37,99,235,.35);
+  box-shadow:0 16px 28px rgba(2,6,23,.12)
+}
+.brand:hover img {transform:scale(1.06)}
 
-@media (max-width:1180px){.brands__grid{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:1180px){
+  .brands__grid{grid-template-columns:repeat(5,1fr)}
+}
 @media (max-width:900px){
   .brands__grid{grid-template-columns:repeat(3,1fr)}
   .brand{height:80px;padding:12px}
-  .brand img{max-height:46px}
 }
 @media (max-width:640px){
   .brands__grid{grid-template-columns:repeat(2,1fr)}
   .brand{height:76px}
-  .brand img{max-height:42px}
 }
 
-/* Ajuste individual de logos menores (mantém Brastemp e Soft como estão) */
-
-/* Ajustes individuais */
-.brand img[src*="brastemp"],
-.brand img[src*="soft"]{
-  max-height:80px !important;
-  transform:scale(1.15);
-}
-
-.brand img[src*="panasonic"],
-.brand img[src*="continental"],
-.brand img[src*="metalfrio"],
-.brand img[src*="samsung"]{
-  max-height:100px !important;   /* maior que padrão */
-  transform:scale(1.25);         /* zoom extra */
-}
-
-@media (max-width:900px){
-  .brand img[src*="brastemp"],
-  .brand img[src*="soft"]{
-    max-height:70px !important;
-    transform:scale(1.1);
-  }
-
-  .brand img[src*="panasonic"],
-  .brand img[src*="continental"],
-  .brand img[src*="metalfrio"],
-  .brand img[src*="samsung"]{
-    max-height:85px !important;
-    transform:scale(1.18);
-  }
-
-.brand img[src*="panasonic"],
-.brand img[src*="continental"],
-.brand img[src*="metalfrio"],
-.brand img[src*="samsung"]{
-  max-height:100px !important;   /* ↑ maior que o padrão */
-  transform:scale(1.25);         /* zoom extra para equilibrar */
-}
-@media (max-width:900px){
-  .brand img[src*="panasonic"],
-  .brand img[src*="continental"],
-  .brand img[src*="metalfrio"],
-  .brand img[src*="samsung"]{
-    max-height:85px !important;  /* ↑ maior no mobile também */
-    transform:scale(1.18);
-  }
 }
