@@ -313,6 +313,37 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 }
 
 /* Ajuste individual de logos menores (mantém Brastemp e Soft como estão) */
+
+/* Ajustes individuais */
+.brand img[src*="brastemp"],
+.brand img[src*="soft"]{
+  max-height:80px !important;
+  transform:scale(1.15);
+}
+
+.brand img[src*="panasonic"],
+.brand img[src*="continental"],
+.brand img[src*="metalfrio"],
+.brand img[src*="samsung"]{
+  max-height:100px !important;   /* maior que padrão */
+  transform:scale(1.25);         /* zoom extra */
+}
+
+@media (max-width:900px){
+  .brand img[src*="brastemp"],
+  .brand img[src*="soft"]{
+    max-height:70px !important;
+    transform:scale(1.1);
+  }
+
+  .brand img[src*="panasonic"],
+  .brand img[src*="continental"],
+  .brand img[src*="metalfrio"],
+  .brand img[src*="samsung"]{
+    max-height:85px !important;
+    transform:scale(1.18);
+  }
+
 .brand img[src*="panasonic"],
 .brand img[src*="continental"],
 .brand img[src*="metalfrio"],
