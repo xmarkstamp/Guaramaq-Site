@@ -359,14 +359,12 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   transform-origin:center;
 }
 
-/* ===== PATCH MOBILE: logo maior sem cortar o "Q" ===== */
+/* ===== MOBILE: centraliza, recorta transparência e reduz tamanho ===== */
 @media (max-width:768px){
-  .header{ min-height:auto; padding-top:10px; }
-
   .header .brand{
     width:100%;
-    height:220px;         /* altura para a logo crescer; ajuste se quiser */
-    overflow:hidden;      /* recorta só o que sobrar do zoom */
+    height:190px;           /* ↓ menor que antes (ajuste fino aqui) */
+    overflow:hidden;        /* esconde sobras do zoom/recorte */
   }
 
   .header .brand img{
@@ -375,27 +373,32 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     max-height:none !important;
     object-fit:contain !important;
 
-    /* Recorte menos agressivo à esquerda para preservar o "Q" */
-    /*   top   right bottom left  */
-    clip-path: inset(18% 10% 18% 0%);
+    /* Recorte das bordas transparentes
+       top   right bottom left  (em % do próprio logo) */
+    clip-path: inset(14% 12% 14% 6%);
 
-    /* Zoom suficiente para “vencer” a área transparente */
-    transform: scale(1.26);
-    transform-origin: left center;   /* pivô na esquerda */
-
-    /* Posição favorece o lado esquerdo (onde está o "Q") */
-    object-position: left center;
-
+    /* Tamanho/posicionamento do conteúdo útil */
+    transform: scale(1.12) translateX(-2%);  /* puxa levemente para a ESQUERDA */
+    transform-origin: center;
     margin:0 auto;
     display:block;
   }
 }
 
-/* Fallback se clip-path não for suportado pelo browser */
+/* Telas muito estreitas: um pouco menor para não cortar */
+@media (max-width:380px){
+  .header .brand{ height:180px; }
+  .header .brand img{
+    clip-path: inset(12% 10% 12% 6%);
+    transform: scale(1.08) translateX(-2%);
+  }
+}
+
+/* Fallback se o navegador não suportar clip-path */
 @supports not (clip-path: inset(10%)){
   @media (max-width:768px){
     .header .brand img{
-      transform: scale(1.26) translateX(-6%);  /* “come” a sobra transparente da esquerda */
+      transform: scale(1.12) translateX(-6%); /* simula o recorte puxando à esquerda */
     }
   }
 }
