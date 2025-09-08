@@ -400,5 +400,14 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     .header .brand img{
       transform: scale(1.12) translateX(-6%); /* simula o recorte puxando à esquerda */
     }
-  }
+  }/* Mostra logo desktop por padrão */
+.logo-desktop { display:block; }
+.logo-mobile { display:none; }
+
+/* Troca para a logo cortada em tablet/mobile */
+@media (max-width:1024px){
+  .logo-desktop { display:none; }
+  .logo-mobile { display:block; }
+}
+
 }
