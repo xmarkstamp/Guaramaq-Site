@@ -347,4 +347,43 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 @media (max-width:640px){
   .brands__grid{grid-template-columns:repeat(2,1fr)}
   .brand{height:76px}.brand img{max-height:42px}
+
+   /* ==== PATCH: Logo no header transparente + zoom no hover ==== */
+
+/* remove qualquer fundo e recorte agressivo */
+.header .brand{ background: transparent !important; }
+.header .brand img{
+  width:100% !important;
+  height:100% !important;
+  object-fit: contain !important;   /* era cover; agora não corta a arte */
+  background: transparent !important;
+  image-rendering: auto;
+  transform-origin: left center;
+  transition: transform .22s ease, filter .22s ease;
+  /* se seu PNG ainda tiver “halo” claro, o drop-shadow ajuda a sumir no gradiente */
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.08));
+}
+
+/* animação de zoom só em dispositivos com hover (não afeta mobile) */
+@media (hover: hover){
+  .header .brand:hover img{
+    transform: scale(1.06);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+  }
+}
+
+/* mantém proporção e organização em diferentes breakpoints */
+.header .brand{
+  width:400px;
+  height:110px;
+  overflow:hidden;
+  display:flex;align-items:center;
+}
+@media (max-width:1024px){
+  .header .brand{ width:340px; height:100px; }
+}
+@media (max-width:768px){
+  .header .brand{ width:100%; height:120px; }
+}
+
 }
