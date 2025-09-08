@@ -387,5 +387,34 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   }
 
   .logo-mobile { display: none; }
+
+/* ===== Correção de padding transparente da logo (cabeçalho) ===== */
+/* Coloque este bloco no FINAL do arquivo para ter precedência */
+:root{
+  /* Ajuste fino rápido por variáveis */
+  --logoCropTop: 18%;
+  --logoCropRight: 8%;
+  --logoCropBottom: 18%;
+  --logoCropLeft: 8%;
+  --logoScale: 1.18;   /* leve zoom no conteúdo útil */
+}
+
+/* Garantir que o container oculte sobras após o zoom */
+.header .brand{ overflow:hidden; }
+
+/* Recorta as “bordas” transparentes e aplica zoom no miolo */
+.header .brand img{
+  width:auto !important;          /* mantém proporção */
+  height:100% !important;         /* usa toda a altura do bloco atual */
+  max-height:none !important;
+  object-fit:contain !important;  /* sem distorcer */
+  /* Corta as áreas transparentes (top right bottom left) */
+  clip-path: inset(var(--logoCropTop) var(--logoCropRight) var(--logoCropBottom) var(--logoCropLeft));
+  transform: scale(var(--logoScale));
+  transform-origin:center;
+}
+
+
+
    
 }
