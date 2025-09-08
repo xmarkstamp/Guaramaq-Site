@@ -1,9 +1,9 @@
-/* Guarámaq • main.js (consolidado)
-   - Menu hambúrguer (mobile)
-   - Copiar telefone (data-copy) com fallback
-   - Acessibilidade badges (data-tip)
-   - Lazy-load em imagens fora do hero
-   - Proteção do formulário e foco no #orcamento
+/* Guarámaq • main.js (atualizado)
+   - Menu hambúrguer (mobile) + animação para "X"
+   - Copiar telefone (data-copy) com fallback e feedback
+   - Acessibilidade em badges (data-tip)
+   - Lazy-load em imagens (exceto banner do hero para LCP)
+   - Proteção do formulário (bloqueia duplo envio) + foco ao abrir #orcamento
 */
 (function () {
   // ===== 1) Menu hambúrguer =====
@@ -13,6 +13,7 @@
   function closeMenu() {
     if (!actions) return;
     actions.classList.remove("is-open");
+    if (hamb) hamb.classList.remove("is-active");
     if (hamb) hamb.setAttribute("aria-expanded", "false");
   }
 
@@ -20,6 +21,7 @@
     hamb.addEventListener("click", () => {
       const open = actions.classList.toggle("is-open");
       hamb.setAttribute("aria-expanded", open ? "true" : "false");
+      hamb.classList.toggle("is-active", open); // animação para "X"
     });
 
     // Fecha no ESC
@@ -109,10 +111,10 @@
     });
   });
 
-  // ===== 4) Lazy-load em imagens (exceto banner do hero) =====
+  // ===== 4) Lazy-load em imagens (exceto banner do hero para LCP) =====
   const heroBanner = document.querySelector(".hero-image .banner img");
   document.querySelectorAll("img").forEach((img) => {
-    if (img === heroBanner) return; // mantém imediato para LCP
+    if (img === heroBanner) return; // mantém imediato para melhor LCP
     if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
     if (!img.src.endsWith(".svg")) img.decoding = "async";
   });
