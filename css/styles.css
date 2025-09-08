@@ -369,5 +369,23 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .logo-desktop{ display: none; }
   .logo-mobile{ display: block; }
 }
+/* ===== Desktop: zoom na logo para compensar o fundo transparente ===== */
+@media (min-width: 1025px){
+  .header .brand {
+    overflow: hidden;                  /* corta sobras */
+    height: 200px;                     /* altura do cabeçalho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .header .brand .logo-desktop {
+    height: 140%;                      /* dá zoom ↑ (120–150%) */
+    width: auto;
+    transform: scale(1.4);             /* zoom no conteúdo */
+    transform-origin: center;          /* centraliza o zoom */
+  }
+
+  .logo-mobile { display: none; }
+   
 }
