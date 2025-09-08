@@ -37,14 +37,14 @@ img{max-width:100%;height:auto;display:block}
   background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
   border-bottom:1px solid rgba(255,255,255,.12);
   box-shadow:0 4px 12px rgba(0,0,0,.15);
-  min-height:132px; /* dá “corpo” para caber logo grande e botões */
+  min-height:170px; /* ↑ mais alto para comportar a logo maior (largura do header não muda) */
 }
 .header .wrap{padding:12px 0}
 
-/* LOGO — sem fundo e grande */
+/* LOGO — mais alta, sem aumentar largura do header e mantendo botões */
 .header .brand{
-  width:500px;              /* antes 460px → aumentada */
-  height:140px;             /* antes 130px → aumentada */
+  width:500px;              /* mantido (não aumenta a largura ocupada) */
+  height:170px;             /* ↑ antes 140px */
   display:flex; align-items:center;
   overflow:hidden;
   background:transparent !important;
@@ -52,9 +52,9 @@ img{max-width:100%;height:auto;display:block}
   border:0 !important;
 }
 .header .brand img{
-  width:100% !important;
-  height:auto !important;
-  max-height:100%;
+  width:auto !important;    /* mantém proporção sem “alargar” */
+  height:100% !important;   /* ↑ usa toda a altura disponível */
+  max-height:none !important;
   object-fit:contain !important;
   background:transparent !important;
   image-rendering:auto;
@@ -67,10 +67,10 @@ img{max-width:100%;height:auto;display:block}
   .header .brand:hover img{ transform:scale(1.06); }
 }
 
-/* AÇÕES dentro do header (direita no desktop) */
+/* AÇÕES dentro do header (direita no desktop) — mantidas como estão */
 .header-actions{
   display:flex; align-items:center; justify-content:flex-end;
-  gap:10px; flex-wrap:nowrap;
+  gap:10px; flex-wrap:nowrap; /* mantido: não quebra linha */
 }
 .header .header-actions .btn{
   border-radius:999px; font-weight:800; box-shadow:none;
@@ -96,15 +96,28 @@ img{max-width:100%;height:auto;display:block}
 
 /* Tablet */
 @media (max-width:1024px){
-  .header .brand{ width:400px; height:130px; }
+  .header{ min-height:160px; }     /* altura do header ajustada */
+  .header .brand{
+    width:400px;                   /* mantido como antes */
+    height:155px;                  /* ↑ antes 130px */
+  }
 }
 
-/* Mobile: logo grande e botões dentro do header, em linhas */
+/* Mobile: logo maior, mantendo botões como estão */
 @media (max-width:768px){
   .header-grid{ flex-direction:column; align-items:stretch; gap:10px; }
   .header{ min-height:auto; padding-top:10px; }
-  .header .brand{ width:100%; height:auto; max-height:160px; }
-  .header .brand img{ width:100% !important; height:auto !important; max-height:140px; object-fit:contain !important; margin:0 auto; }
+  .header .brand{
+    width:100%;
+    height:180px;                 /* ↑ logo bem maior no mobile */
+    max-height:none;              /* remove trava anterior */
+  }
+  .header .brand img{
+    width:auto !important;        /* não “alarga” a logo */
+    height:100% !important;       /* preenche a altura do bloco */
+    object-fit:contain !important;
+    margin:0 auto;
+  }
   .header-actions{ width:100%; flex-wrap:wrap; justify-content:center; padding:0 0 10px; gap:10px; }
   .header-actions .btn{ flex:1 1 auto; min-width:44%; justify-content:center; font-size:16px; padding:14px; }
 }
