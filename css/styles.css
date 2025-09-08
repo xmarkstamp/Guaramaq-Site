@@ -53,7 +53,7 @@ img{max-width:100%;height:auto;display:block}
 }
 .header .brand img{
   width:auto !important;    /* mantém proporção sem “alargar” */
-  height:100% !important;   /* ↑ usa toda a altura disponível */
+  height:200% !important;   /* ↑ usa toda a altura disponível */
   max-height:none !important;
   object-fit:contain !important;
   background:transparent !important;
