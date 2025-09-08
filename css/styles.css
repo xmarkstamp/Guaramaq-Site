@@ -1,5 +1,5 @@
 /* =========================
-   Guarámaq • styles.css
+   Guarámaq • styles.css (v7)
    ========================= */
 
 /* ===== Variáveis ===== */
@@ -31,8 +31,13 @@ img{max-width:100%;height:auto;display:block}
 .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
-/* ===== Header / Topo ===== */
-.header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
+/* ===== Header / Topo (com gradiente) ===== */
+.header{
+  position:sticky;top:0;z-index:50;
+  background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
 .header .wrap{padding:12px 0}
 
 /* Marca — caixa que corta sobras e evita distorção */
@@ -44,6 +49,41 @@ img{max-width:100%;height:auto;display:block}
 }
 .header .brand img{
   width:100% !important; height:100% !important; object-fit:cover; display:block;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.3)); /* leve destaque no gradiente */
+}
+
+/* Botões no cabeçalho com alto contraste */
+.header-actions .btn{
+  font-size:14px;
+  border-radius:999px;
+  font-weight:700;
+  transition:.2s ease;
+  border:1px solid transparent;
+}
+.btn.ghost{
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.5);
+}
+.btn.ghost:hover{
+  background:rgba(255,255,255,.15);
+  border-color:#fff;
+}
+.btn.whats{
+  background:#25D366;
+  color:#06220f;
+}
+.btn.whats:hover{
+  background:#16a34a; color:#fff;
+}
+.btn.primary{
+  background:#fff;
+  color:#003C92;
+  border:1px solid #fff;
+}
+.btn.primary:hover{
+  background:#f1f5f9;
+  color:#003C92;
 }
 
 /* Tablet */
@@ -57,7 +97,16 @@ img{max-width:100%;height:auto;display:block}
   .header-grid{ flex-direction:column; align-items:stretch; gap:12px; }
   .header .brand{ width:100%; height:120px; }
   .header .brand img{ width:100% !important; height:100% !important; object-fit:cover; }
-  .header-actions{ width:100%; display:flex; flex-direction:column; gap:10px; }
+}
+
+/* ===== Hambúrguer (mobile) ===== */
+.hamb{display:none;gap:4px;background:transparent;border:0;cursor:pointer}
+.hamb__bar{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+@media (max-width:768px){
+  .hamb{display:inline-flex;align-items:center;justify-content:center}
+  .header-grid{flex-wrap:wrap}
+  .header-actions{width:100%;display:none}
+  .header-actions.is-open{display:flex;flex-direction:column;gap:10px}
   .header-actions .btn{ width:100%; justify-content:center; font-size:16px; padding:14px; }
 }
 
@@ -68,7 +117,7 @@ h3{margin:0 0 8px;font-size:20px}
 h4{margin:0 0 6px;font-size:16px}
 p{margin:0 0 14px;font-size:16px;color:#334155}
 
-/* ===== Botões ===== */
+/* ===== Botões (base) ===== */
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -84,7 +133,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .btn.whats:hover{background:#16a34a;color:#fff}
 .btn.ghost{background:#fff;border-color:#cbd5e1}
 
-/* Botão com animação “pulse” (induz ação) */
+/* Botão com animação “pulse” */
 .btn.pulse{animation:pulse 1.8s infinite}
 @keyframes pulse{
   0%{box-shadow:0 0 0 0 rgba(37,99,235,.55)}
@@ -92,7 +141,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}
 }
 
-/* ===== Hero refinado ===== */
+/* ===== Hero ===== */
 .hero{background:#fff;padding:50px 0}
 .hero .grid{
   display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
@@ -151,9 +200,9 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   .hero .actions{ flex-wrap:wrap; }
 }
 
-/* ===== Banner simples e CLICÁVEL (liga ao clicar) ===== */
+/* ===== Banner simples e CLICÁVEL ===== */
 .hero-image a.banner{
-  display:block;                   /* clique em toda a área */
+  display:block;
   border-radius:14px;
   overflow:hidden;
   box-shadow:var(--shadow);
@@ -162,9 +211,7 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
   width:100%; display:block;
   transition:transform .45s ease;
 }
-.hero-image a.banner:hover img{
-  transform:scale(1.04);
-}
+.hero-image a.banner:hover img{ transform:scale(1.04); }
 
 /* ===== Badges (interativas + tooltip) ===== */
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
@@ -237,10 +284,8 @@ p{margin:0 0 14px;font-size:16px;color:#334155}
 .step.is-diagnose h4 .icon{ background:rgba(37,99,235,.12); }  /* Ligação */
 .step.is-repair h4 .icon{ background:rgba(245,158,11,.15); }   /* Rota */
 
-/* ===== Quem Somos (SEO) ===== */
-.about p{
-  max-width: 86ch;
-}
+/* ===== Quem Somos ===== */
+.about p{ max-width: 86ch; }
 
 /* ===== Depoimentos ===== */
 .testimonials .card{
@@ -267,6 +312,34 @@ footer .wrap{padding:22px 0;display:flex;align-items:center;justify-content:spac
 footer .actions .btn{border-color:rgba(255,255,255,.2)}
 footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
+/* ===== Marcas / Fabricantes (nova seção) ===== */
+.brands{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.brands__subtitle{margin:0 0 16px;color:#334155;max-width:90ch}
+.brands__grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+.brand{
+  display:grid;place-items:center;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:14px; height:86px;
+  box-shadow:0 4px 10px rgba(2,6,23,.06);
+  transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease, filter .2s ease;
+}
+.brand img{max-height:52px; width:auto; transition:transform .2s ease}
+.brand:hover{
+  transform:translateY(-2px);
+  border-color:rgba(37,99,235,.35);
+  box-shadow:0 16px 28px rgba(2,6,23,.12);
+}
+.brand:hover img{ transform:scale(1.06) } /* pequeno zoom ao passar o mouse */
+
+.visually-hidden{
+  position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;
+  clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap
+}
+
 /* ===== Acessibilidade ===== */
 :focus-visible{outline:3px solid rgba(37,99,235,.35); outline-offset:2px}
 @media (prefers-reduced-motion: reduce){
@@ -276,11 +349,15 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 /* ===== Responsividade geral ===== */
 @media (max-width:1180px){
   .container{max-width:1000px}
+  .brands__grid{grid-template-columns:repeat(5,1fr)}
 }
 @media (max-width:900px){
   .hero .grid{grid-template-columns:1fr}
   .grid-3,.steps{grid-template-columns:1fr}
   .hero .actions{justify-content:center}
+  .brands__grid{grid-template-columns:repeat(3,1fr)}
+  .brand{height:80px;padding:12px}
+  .brand img{max-height:46px}
 }
 @media (max-width:640px){
   .actions{display:flex;flex-wrap:wrap;gap:8px}
@@ -293,4 +370,8 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 
   /* Hero centralizado no mobile */
   .hero .grid{text-align:center}
+
+  .brands__grid{grid-template-columns:repeat(2,1fr)}
+  .brand{height:76px}
+  .brand img{max-height:42px}
 }
