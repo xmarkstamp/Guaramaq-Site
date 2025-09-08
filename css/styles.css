@@ -410,6 +410,26 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     transform: scale(var(--logoScale));
     transform-origin:center;
   }
+/* ===== Ajuste só para LOGO no DESKTOP ===== */
+@media (min-width:1025px){
+  .header .brand{
+    overflow:hidden;   /* corta sobras */
+    height:170px;      /* mantém altura */
+  }
+  .header .brand img.logo-desktop{
+    width:auto !important;
+    height:100% !important;
+    max-height:none !important;
+    object-fit:contain !important;
+
+    /* recorte das áreas transparentes (top right bottom left) */
+    clip-path: inset(15% 8% 15% 8%);
+    transform: scale(1.25);      /* zoom no miolo */
+    transform-origin:center;
+    display:block;
+    margin:0 auto;
+  }
+   
 }
 
 
