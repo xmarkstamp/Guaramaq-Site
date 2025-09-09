@@ -681,3 +681,32 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     line-height: 1;
   }
 }
+/* ===== PATCH: Cabeçalho (MOBILE) — botões em coluna ===== */
+@media (max-width: 768px){
+  /* garante que o conteúdo do header empilhe */
+  .header-grid{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  /* botões EXISTENTES do cabeçalho em coluna, dentro do header */
+  .header-actions{
+    display: flex;
+    position: static;           /* nada flutuando/absoluto */
+    flex-direction: column;     /* coluna (vertical) */
+    align-items: stretch;       /* ocupa toda a largura */
+    gap: 10px;
+    width: 100%;
+    padding: 0 8px 10px;        /* respiro inferior */
+  }
+
+  /* tamanho confortável dos botões no mobile */
+  .header-actions .btn{
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+}
