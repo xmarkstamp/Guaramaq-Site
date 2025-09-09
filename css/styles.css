@@ -463,3 +463,55 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
 }
 
 }
+
+
+
+/* ===== Mobile (até 768px) ===== */
+@media (max-width:768px){
+  .header-grid{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  /* Logo à esquerda */
+  .header .brand{
+    width:auto;
+    height:70px; /* cabeçalho mais enxuto */
+    flex-shrink:0;
+  }
+  .header .brand img{
+    height:100% !important;
+    width:auto !important;
+  }
+
+  /* Ações à direita, botões menores lado a lado */
+  .header-actions{
+    display:flex;
+    flex-direction:row;
+    gap:6px;
+    justify-content:flex-end;
+    flex-wrap:nowrap;
+  }
+  .header-actions .btn{
+    padding:8px 10px;
+    font-size:13px;
+    flex:0 0 auto;
+  }
+
+  /* Menu hambúrguer visível apenas no mobile */
+  .menu-toggle{
+    display:block;
+    background:none;
+    border:0;
+    font-size:24px;
+    color:#fff;
+    cursor:pointer;
+  }
+}
+
+/* Esconde o menu hambúrguer no desktop */
+@media (min-width:769px){
+  .menu-toggle{ display:none; }
+}
