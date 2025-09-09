@@ -10,112 +10,90 @@
   <meta property="og:image" content="assets/banner.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=6">
   <script defer src="js/main.js"></script>
   <meta name="format-detection" content="telephone=yes">
 
-  <!-- Overrides mínimos para não precisar mexer no styles.css -->
+  <!-- Pequenos ajustes visuais pontuais -->
   <style>
-    /* 1) Título sem quebra no desktop */
-    @media (min-width: 901px){
-      .title-top{ white-space: nowrap; }
-    }
-
-    /* 2) Sirene com sensação de movimento (brilho pulsante) */
+    /* Sirene com brilho pulsante */
     .siren{ animation: flash 1.4s infinite alternate; }
     @keyframes flash{
       from { filter: drop-shadow(0 0 4px rgba(14,165,233,.8)); }
       to   { filter: drop-shadow(0 0 16px rgba(37,99,235,1)); }
     }
-
-    /* 3) Três botões do HERO na mesma linha no desktop */
+    /* Título sem quebra no desktop */
+    @media (min-width: 901px){
+      .title-top{ white-space: nowrap; }
+    }
+    /* Ações do HERO em linha no desktop; mobile permite quebra */
     @media (min-width: 901px){
       .hero .actions{ flex-wrap: nowrap; gap:8px; }
       .hero .actions .btn{ padding:10px 12px; font-size:14px; }
     }
-    /* Mobile continua podendo quebrar linha para não estourar */
     @media (max-width: 900px){
       .hero .actions{ flex-wrap: wrap; }
     }
-
-    /* 4) Ícones no "Como funciona" */
+    /* Ícones "Como funciona" */
     .step h4 .icon{
       font-size: 20px;
       display:inline-flex; align-items:center; justify-content:center;
       width:26px; height:26px; border-radius:999px;
       background:rgba(37,99,235,.08); margin-right:6px;
     }
-
-    /* 5) Depoimentos: grid bonitinho e legível */
-    .testimonials .card{
-      min-height: 140px;
-      display:flex; flex-direction:column; justify-content:space-between;
-    }
+    /* Depoimentos */
+    .testimonials .card{ min-height:140px; display:flex; flex-direction:column; justify-content:space-between; }
     .testimonials .card p{ margin-bottom:10px; }
     .testimonials .card strong{ color:#0f172a; font-size:14px; }
   </style>
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="header">
+<!-- ================= HEADER (SEM HAMBÚRGUER) ================= -->
+<header class="header" role="banner">
   <div class="container header-grid">
-    
-    <!-- LOGO (desktop e mobile, cada uma exibida no breakpoint) -->
+    <!-- LOGO (desktop: grande com “zoom limpo”; mobile: enxuta) -->
     <a id="site-logo" class="brand"
        href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
        target="_blank" rel="noopener"
        aria-label="Abrir WhatsApp da Guarámaq">
-
-      <!-- Logo para Desktop -->
-      <img src="assets/logo-guaramaq-desktop.png"
-           alt="Guarámaq Assistência Técnica e Refrigeração"
-           class="logo-desktop">
-
-      <!-- Logo para Mobile/Tablet -->
-      <img src="assets/logo-guaramaq-mobile.png"
-           alt="Guarámaq Assistência Técnica e Refrigeração"
-           class="logo-mobile">
+      <picture>
+        <source srcset="assets/logo-guaramaq-mobile.png" media="(max-width: 900px)">
+        <img src="assets/logo-guaramaq-desktop.png"
+             alt="Guarámaq Assistência Técnica e Refrigeração"
+             class="logo-desktop">
+      </picture>
+      <img src="assets/logo-guaramaq-mobile.png" alt="" class="logo-mobile" aria-hidden="true">
     </a>
 
-    <!-- BOTÃO HAMBÚRGUER (apenas mobile) -->
-    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
-
-    <!-- AÇÕES (telefone, WhatsApp e rota) -->
-    <div class="header-actions actions">
-      <a class="btn ghost" href="tel:+556135543806" aria-label="Ligar para Guarámaq">
-        📞 (61) 3554-3806
+    <!-- AÇÕES (desktop: alinhadas na horizontal; mobile: 2–3 por linha com quebra elegante) -->
+    <nav id="header-actions" class="header-actions" aria-label="Ações principais">
+      <a class="btn ghost btn--tel" href="tel:+556135543806" aria-label="Ligar para Guarámaq">
+        📞 <span>(61) 3554-3806</span>
       </a>
-      <a class="btn whats"
+      <a class="btn whats btn--zap"
          href="https://wa.me/5561982216938?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20t%C3%A9cnico%20com%20a%20Guar%C3%A1maq"
          target="_blank" rel="noopener" aria-label="Solicitar orçamento no WhatsApp">
-        💬 (61) 98221-6938
+        💬 <span>(61) 98221-6938</span>
       </a>
-      <a class="btn primary"
+      <a class="btn primary btn--rota"
          href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819"
-         target="_blank" rel="noopener">
-        📍 Rota até a loja
+         target="_blank" rel="noopener" aria-label="Abrir rota no Google Maps">
+        📍 <span>Rota até a loja</span>
       </a>
-    </div>
+    </nav>
   </div>
 </header>
 
 <main>
 
-
-
-
-
-
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="container grid">
-      
       <!-- Texto, título e CTAs -->
       <div class="hero-text">
         <h1 class="hero-title">
           <span class="title-top">
-            <!-- Sirene SVG azul com degradê -->
             <svg class="siren" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="gBlue" x1="0" x2="1" y1="0" y2="1">
@@ -162,11 +140,10 @@
           <img src="assets/banner.png" alt="Técnico de refrigeração, Guarámaq Refrigeração">
         </a>
       </div>
-
     </div>
   </section>
 
-  <!-- ================= FABRICANTES / MARCAS (INSERIDO) ================= -->
+  <!-- ================= MARCAS / FABRICANTES ================= -->
   <section class="section brands" aria-labelledby="brands-title">
     <div class="container">
       <h2 id="brands-title">Assistência Técnica Profissional</h2>
@@ -209,12 +186,11 @@
     </div>
   </section>
 
-  <!-- ================= COMO FUNCIONA (com ícones) ================= -->
+  <!-- ================= COMO FUNCIONA ================= -->
   <section class="section">
     <div class="container">
       <h2>Como funciona</h2>
       <div class="steps">
-        <!-- 1) Contato → WhatsApp -->
         <a class="step is-contact"
            href="https://wa.me/5561982216938?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20técnico%20com%20a%20Guarámaq"
            target="_blank" rel="noopener" aria-label="Abrir WhatsApp para contato">
@@ -224,7 +200,6 @@
           <div class="cta">Falar no WhatsApp</div>
         </a>
 
-        <!-- 2) Diagnóstico → liga para o fixo -->
         <a class="step is-diagnose"
            href="tel:+556135543806"
            aria-label="Ligar para Guarámaq (diagnóstico)">
@@ -234,7 +209,6 @@
           <div class="cta">Ligar agora</div>
         </a>
 
-        <!-- 3) Conserto → rota no Google Maps -->
         <a class="step is-repair"
            href="https://www.google.com/maps/dir/?api=1&destination=-15.8219142,-47.9945819"
            target="_blank" rel="noopener" aria-label="Abrir rota no Google Maps para a Guarámaq">
@@ -247,7 +221,7 @@
     </div>
   </section>
 
-  <!-- ================= QUEM SOMOS (SEO) ================= -->
+  <!-- ================= QUEM SOMOS ================= -->
   <section class="section about">
     <div class="container">
       <h2>Quem Somos</h2>
