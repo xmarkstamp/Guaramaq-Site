@@ -388,3 +388,40 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .header-actions .btn span{ display: inline; }
 }
 
+/* ================= MOBILE: tudo em coluna ================= */
+@media (max-width: 900px){
+
+  /* HERO – CTAs em coluna */
+  .hero .actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero .actions .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* DEPOIMENTOS em coluna */
+  .testimonials .grid-3{
+    grid-template-columns: 1fr; /* uma coluna só */
+    gap: 16px;
+  }
+
+  /* COMO FUNCIONA em coluna */
+  .steps{
+    grid-template-columns: 1fr; /* uma coluna só */
+    gap: 16px;
+  }
+
+  /* SERVIÇOS em coluna */
+  .grid-3{
+    grid-template-columns: 1fr; /* uma coluna só */
+    gap: 16px;
+  }
+
+  /* MARCAS (mantém 2 colunas pequenas, mas pode forçar 1 se quiser) */
+  .brands__grid{
+    grid-template-columns: 1fr; /* força uma marca por linha */
+    gap: 12px;
+  }
+}
