@@ -486,3 +486,13 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     transform-origin: center;
   }
 }
+/* === PATCH: Botões do cabeçalho menores (somente MOBILE) === */
+@media (max-width: 768px){
+  .header-actions .btn{
+    padding: 5px 8px;     /* reduz altura e largura */
+    font-size: 12px;      /* texto menor */
+    line-height: 1.2;
+    min-width: auto;      /* não força largura fixa */
+    border-radius: 6px;   /* cantos mais compactos */
+  }
+}
