@@ -1,46 +1,15 @@
-/* Guarámaq • main.js (atualizado)
-   - Menu hambúrguer (mobile) + animação para "X"
+/* Guarámaq • main.js (final, sem hambúrguer)
    - Copiar telefone (data-copy) com fallback e feedback
    - Acessibilidade em badges (data-tip)
    - Lazy-load em imagens (exceto banner do hero para LCP)
    - Proteção do formulário (bloqueia duplo envio) + foco ao abrir #orcamento
 */
 (function () {
-  // ===== 1) Menu hambúrguer =====
-  const hamb = document.querySelector(".hamb");
-  const actions = document.getElementById("top-actions");
-
-  function closeMenu() {
-    if (!actions) return;
-    actions.classList.remove("is-open");
-    if (hamb) hamb.classList.remove("is-active");
-    if (hamb) hamb.setAttribute("aria-expanded", "false");
-  }
-
-  if (hamb && actions) {
-    hamb.addEventListener("click", () => {
-      const open = actions.classList.toggle("is-open");
-      hamb.setAttribute("aria-expanded", open ? "true" : "false");
-      hamb.classList.toggle("is-active", open); // animação para "X"
-    });
-
-    // Fecha no ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-
-    // Fecha ao clicar fora
-    document.addEventListener("click", (e) => {
-      if (!actions.classList.contains("is-open")) return;
-      const clickInside =
-        e.target.closest("#top-actions") || e.target.closest(".hamb");
-      if (!clickInside) closeMenu();
-    });
-  }
-
-  // ===== 2) Copiar telefone (data-copy) com fallback =====
+  // ===== 1) Copiar telefone (data-copy) com fallback =====
   const canClipboard = !!(navigator.clipboard && navigator.clipboard.writeText);
+
   function tempLabel(el, text, cls, ms = 1400) {
+    if (!el) return;
     if (!el.dataset.originalLabel) {
       el.dataset.originalLabel = (el.innerText || el.textContent || "").trim();
     }
@@ -63,30 +32,25 @@
         () => onDone(true),
         () => onDone(false)
       );
-    } else {
-      // Fallback compatível
-      const ta = document.createElement("textarea");
-      ta.value = val;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "absolute";
-      ta.style.left = "-9999px";
-      document.body.appendChild(ta);
-      ta.select();
-      let ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (e) {
-        ok = false;
-      }
-      document.body.removeChild(ta);
-      onDone(ok);
+      return;
     }
+    // Fallback compatível
+    const ta = document.createElement("textarea");
+    ta.value = val;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "absolute";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+    document.body.removeChild(ta);
+    onDone(ok);
   }
 
   document.addEventListener("click", (ev) => {
     const el = ev.target.closest("[data-copy]");
-    if (!el) return;
-    if (el.disabled) return;
+    if (!el || el.disabled) return;
     const val = (el.getAttribute("data-copy") || "").trim();
     if (!val) {
       tempLabel(el, "Nada para copiar", "is-error");
@@ -97,7 +61,7 @@
     );
   });
 
-  // ===== 3) Acessibilidade badges (data-tip) =====
+  // ===== 2) Acessibilidade badges (data-tip) =====
   const tipBadges = document.querySelectorAll("[data-tip]");
   tipBadges.forEach((el) => {
     if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
@@ -111,7 +75,7 @@
     });
   });
 
-  // ===== 4) Lazy-load em imagens (exceto banner do hero para LCP) =====
+  // ===== 3) Lazy-load em imagens (exceto banner do hero para LCP) =====
   const heroBanner = document.querySelector(".hero-image .banner img");
   document.querySelectorAll("img").forEach((img) => {
     if (img === heroBanner) return; // mantém imediato para melhor LCP
@@ -119,7 +83,7 @@
     if (!img.src.endsWith(".svg")) img.decoding = "async";
   });
 
-  // ===== 5) Formulário (evitar duplo envio) =====
+  // ===== 4) Formulário (evitar duplo envio) =====
   const forms = document.querySelectorAll('form[action^="https://formspree.io"]');
   forms.forEach((form) => {
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -140,7 +104,7 @@
     });
   });
 
-  // ===== 6) Foco no formulário ao abrir #orcamento =====
+  // ===== 5) Foco no formulário ao abrir #orcamento =====
   function focusFormIfHash() {
     if (location.hash === "#orcamento") {
       const form = document.querySelector("#orcamento form");
