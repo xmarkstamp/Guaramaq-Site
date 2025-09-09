@@ -339,3 +339,52 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     transform:scale(1.1);
   }
 }
+
+
+
+/* ================= MOBILE: header 100% vertical (logo full-width + botões 100%) ================= */
+@media (max-width: 900px){
+  /* Grid vira uma coluna única */
+  .header .header-grid{
+    display: grid;
+    grid-template-columns: 1fr;  /* tudo empilhado */
+    row-gap: 10px;
+    column-gap: 0;
+    padding: 10px 0 12px;
+  }
+
+  /* LOGO: ocupar a largura inteira, sem corte nem zoom */
+  .header .brand{
+    display:block;
+    width: 100%;
+    overflow: visible;        /* sem cortar a arte */
+  }
+  .logo-desktop{ display:none !important; }
+  .logo-mobile{
+    display:block !important;
+    width: 100%;              /* vai de uma borda à outra */
+    height: auto;             /* mantém proporção */
+    object-fit: contain !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+
+  /* AÇÕES: empilhar e ocupar 100% */
+  .header-actions{
+    display: flex;
+    flex-direction: column;   /* vertical */
+    align-items: stretch;     /* cada botão com 100% */
+    gap: 8px;
+    grid-column: 1 / -1;      /* garante que fique logo abaixo da logo */
+  }
+  .header-actions .btn{
+    width: 100%;
+    padding: 12px 14px;       /* altura confortável para toque */
+    font-size: 14px;
+    border-radius: 12px;
+    justify-content: center;
+  }
+  /* Mostra o texto completo dos botões (com número) — há espaço agora */
+  .header-actions .btn span{ display: inline; }
+}
+
