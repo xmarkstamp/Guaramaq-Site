@@ -710,3 +710,90 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     border-radius: 12px;
   }
 }
+
+/* ===== Header / Topo ===== */
+.header{
+  position:sticky; top:0; z-index:50;
+  background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  min-height:132px;
+}
+
+.header-grid{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+/* Logo */
+.header .brand{
+  display:flex; align-items:center;
+  background:transparent !important;
+  border:0 !important; box-shadow:none !important;
+}
+.logo-desktop{ display:block; height:120px; width:auto; }
+.logo-mobile{ display:none; height:80px; width:auto; }
+
+/* Botão hambúrguer (só mobile) */
+.menu-toggle{
+  display:none;
+  background:transparent;
+  border:0;
+  font-size:28px;
+  cursor:pointer;
+  color:#fff;
+}
+
+/* Ações */
+.header-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+}
+.header .header-actions .btn{
+  border-radius:999px; font-weight:800;
+  padding:10px 14px; font-size:14px;
+}
+
+/* Botões padrão */
+.header .btn.ghost{
+  background:transparent; color:#fff;
+  border:1px solid rgba(255,255,255,.7);
+}
+.header .btn.whats{
+  background:#25D366; color:#06220f;
+}
+.header .btn.primary{
+  background:#fff; color:#003C92; border:2px solid #fff;
+  font-weight:900; animation:pulse 1.8s infinite;
+}
+
+/* Mobile */
+@media (max-width:768px){
+  .logo-desktop{ display:none; }
+  .logo-mobile{ display:block; margin-left:0; }
+
+  .menu-toggle{ display:block; }
+
+  .header-grid{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  /* Ações ficam em coluna vertical, alinhadas à direita */
+  .header-actions{
+    flex-direction:column;
+    align-items:flex-end;
+    gap:6px;
+  }
+  .header-actions .btn{
+    width:auto;
+    font-size:13px;
+    padding:8px 12px;
+  }
+}
+
