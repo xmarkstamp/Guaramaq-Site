@@ -381,3 +381,70 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     padding:8px 12px;
   }
 }
+/* =========================================
+   PATCH — Logo grande no desktop + mobile
+   botões iguais e logo maior
+   (cole no FINAL do styles.css)
+   ========================================= */
+
+/* DESKTOP / NOTEBOOK — aumentar logo */
+@media (min-width: 1025px){
+  .header{
+    min-height: 190px;                 /* dá altura pro cabeçalho */
+  }
+  .header .brand{
+    height: 190px;                      /* bloco da logo */
+    width: 540px;                       /* pode ajustar 520–580 */
+    justify-content: flex-start;        /* logo mais à esquerda */
+  }
+  .logo-desktop{
+    height: 180px;                      /* logo realmente grande */
+    width: auto;
+  }
+}
+
+/* MOBILE — logo maior + botões com MESMO tamanho em coluna à direita */
+@media (max-width: 768px){
+  /* estrutura da linha */
+  .header-grid{
+    display: grid;
+    grid-template-columns: 1fr auto auto;  /* logo | hambúrguer | coluna de botões */
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  /* logo ocupa quase toda a largura disponível */
+  .header .brand{
+    height: 88px;            /* aumenta a altura da faixa da logo */
+    justify-content: flex-start;
+  }
+  .logo-mobile{
+    height: 84px;            /* quase no limite do cabeçalho */
+    width: auto;
+  }
+
+  /* hambúrguer fica coladinho após a logo */
+  .menu-toggle{
+    display: block;
+    font-size: 28px;
+    line-height: 1;
+    padding: 4px 6px;
+  }
+
+  /* coluna de botões à direita, todos com o MESMO tamanho */
+  .header-actions{
+    display: flex;
+    flex-direction: column;      /* vertical */
+    align-items: stretch;        /* estica os botões */
+    gap: 8px;
+    width: 220px;                /* largura fixa da coluna (ajuste fino) */
+    justify-self: end;           /* cola à direita do grid */
+  }
+  .header-actions .btn{
+    width: 100%;                 /* todos iguais */
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 12px;
+    line-height: 1.1;
+  }
+}
