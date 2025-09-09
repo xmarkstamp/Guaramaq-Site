@@ -425,3 +425,79 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     gap: 12px;
   }
 }
+
+
+
+/* ================= MOBILE AJUSTADO ================= */
+@media (max-width: 900px){
+
+  /* Logo maior e centralizada */
+  .header .header-grid{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .header .brand{
+    width: 100%;
+  }
+  .logo-desktop{ display: none !important; }
+  .logo-mobile{
+    display: block !important;
+    width: 95%;          /* ocupa quase toda a tela */
+    max-width: 360px;    /* limite para não distorcer */
+    margin: 0 auto;      /* centraliza */
+    height: auto;
+    object-fit: contain !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+
+  /* Botões do header: um embaixo do outro */
+  .header-actions{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .header-actions .btn{
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+
+  /* Hero CTAs: coluna */
+  .hero .actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero .actions .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Depoimentos em coluna */
+  .testimonials .grid-3{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Como funciona em coluna */
+  .steps{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Serviços em coluna */
+  .grid-3{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Marcas → mantém versão anterior (2 colunas no mobile) */
+  .brands__grid{
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+  }
+  .brand{ height: 76px; }
+  .brand img{ max-height: 42px; }
+}
+
