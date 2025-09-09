@@ -31,132 +31,69 @@ img{max-width:100%;height:auto;display:block}
 .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
 
-/* ===== Header / Topo ===== */
+/* ================= HEADER ================= */
 .header{
   position:sticky; top:0; z-index:50;
-  background: linear-gradient(180deg, #0066cc 0%, #004080 100%); /* claro em cima → escuro embaixo */
+  background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
   border-bottom:1px solid rgba(255,255,255,.12);
   box-shadow:0 4px 12px rgba(0,0,0,.15);
-  min-height:170px;
+  min-height:132px;
 }
 .header .wrap{padding:12px 0}
 
-/* LOGO — mais alta, sem aumentar largura do header e mantendo botões */
+.header-grid{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+/* Logo (desktop padrão) */
 .header .brand{
-  width:500px;              /* não altera a largura do header */
-  height:170px;             /* altura visível da logo no desktop */
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
+  display:flex; align-items:center;
   background:transparent !important;
-  box-shadow:none !important;
-  border:0 !important;
+  border:0 !important; box-shadow:none !important;
 }
-.header .brand img{
-  width:auto !important;        /* mantém proporção */
-  height:100% !important;       /* preenche a altura do bloco */
-  max-height:none !important;
-  object-fit:contain !important;
-  background:transparent !important;
-  image-rendering:auto;
-  transform:none !important;    /* zera zoom/translate antigos */
-  clip-path:none !important;    /* zera cortes antigos */
+.logo-desktop{ display:block; height:120px; width:auto; }
+.logo-mobile{ display:none; height:80px; width:auto; }
+
+/* Botão hambúrguer (só mobile) */
+.menu-toggle{
+  display:none;
+  background:transparent;
+  border:0;
+  font-size:28px;
+  cursor:pointer;
+  color:#fff;
 }
 
-/* hover suave opcional */
-@media (hover:hover){
-  .header .brand img{ transition:transform .22s ease; }
-  .header .brand:hover img{ transform:scale(1.03); }
-}
-
-/* AÇÕES dentro do header (direita no desktop) — mantidas */
+/* Ações (botões) */
 .header-actions{
-  display:flex; align-items:center; justify-content:flex-end;
-  gap:10px; flex-wrap:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
 }
 .header .header-actions .btn{
-  border-radius:999px; font-weight:800; box-shadow:none;
-  padding:12px 16px; font-size:15px;
+  border-radius:999px; font-weight:800;
+  padding:10px 14px; font-size:14px;
 }
+
+/* Botões padrão */
 .header .btn.ghost{
-  background:transparent; color:#fff; border:1px solid rgba(255,255,255,.7);
+  background:transparent; color:#fff;
+  border:1px solid rgba(255,255,255,.7);
 }
 .header .btn.ghost:hover{ background:rgba(255,255,255,.14); border-color:#fff; color:#fff; }
 .header .btn.whats{
   background:#25D366; color:#06220f; border:1px solid rgba(255,255,255,.2);
 }
 .header .btn.whats:hover{ background:#16a34a; color:#fff; }
-
-/* Botão Rota com pulsar */
 .header .btn.primary{
   background:#fff; color:#003C92; border:2px solid #fff;
-  box-shadow:0 4px 10px rgba(0,0,0,.12);
-  font-weight:900;
-  animation:pulse 1.8s infinite;
+  font-weight:900; animation:pulse 1.8s infinite;
 }
 .header .btn.primary:hover{ background:#f1f5f9; color:#003C92; }
-
-/* ===== Troca de logo por breakpoint ===== */
-.logo-desktop { display:block; }
-.logo-mobile  { display:none;  }
-
-@media (max-width:1024px){           /* tablets e celulares */
-  .logo-desktop { display:none; }
-  .logo-mobile  { display:block; }
-}
-
-/* ===== Tablet ===== */
-@media (max-width:1024px){
-  .header{ min-height:160px; }
-  .header .brand{
-    width:420px;                /* não altera largura total do header */
-    height:165px;
-  }
-}
-
-/* ===== Mobile ===== */
-@media (max-width:768px){
-  .header-grid{ flex-direction:column; align-items:stretch; gap:10px; }
-  .header{ min-height:auto; padding-top:10px; }
-
-  .header .brand{
-    width:100%;
-    height:190px;               /* altura confortável p/ mobile */
-  }
-  .header .brand img{
-    width:auto !important;
-    height:100% !important;
-    object-fit:contain !important;
-    margin:0 auto;
-  }
-
-  .header-actions{
-    width:100%; flex-wrap:wrap; justify-content:center; padding:0 0 10px; gap:10px;
-  }
-  .header-actions .btn{
-    flex:1 1 auto; min-width:44%; justify-content:center; font-size:16px; padding:14px;
-  }
-}
-
-/* === DESKTOP: libera a logo para ficar grande (único override) === */
-@media (min-width:1025px){
-  .header{ 
-    min-height: 220px;          /* ajuste aqui se quiser maior */
-  }
-  .header .brand{
-    width: 520px;
-    height: 220px;
-    overflow: visible;
-  }
-  .header .brand img{
-    height: 100% !important;
-    width: auto !important;
-    max-height: none !important;
-    object-fit: contain !important;
-    clip-path: none !important;
-    transform: none !important;
-    filter: none !important;
-  }
-}
 
 /* ===== Tipografia base ===== */
 h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,48px);line-height:1.15}
@@ -165,7 +102,7 @@ h3{margin:0 0 8px;font-size:20px}
 h4{margin:0 0 6px;font-size:16px}
 p{margin:0 0 14px;font-size:16px;color:#334155}
 
-/* ===== Botões ===== */
+/* ===== Botões genéricos ===== */
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -324,9 +261,7 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .hero .grid{text-align:center}
 }
 
-/* =======================================================================
-   Seção Marcas/Fabricantes (grid + hover zoom + responsivo)
-   ======================================================================= */
+/* ================= MARCAS/FABRICANTES ================= */
 .brands{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .brands__subtitle{margin:0 0 16px;color:#334155;max-width:90ch}
 .brands__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
@@ -351,7 +286,7 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
   .brand img{max-height:42px}
 }
 
-/* Ajuste individual de logos menores */
+/* Boost de tamanho para marcas específicas */
 .brand img[src*="brastemp"],
 .brand img[src*="soft"],
 .brand img[src*="panasonic"],
@@ -369,420 +304,73 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     max-height:70px !important;
     transform:scale(1.1);
   }
+}
 
-   /* ===================================================================
-   PATCH – Header: desktop/notebook alinhado + mobile compacto
-   (cole abaixo do CSS existente; só override, nada removido)
-   =================================================================== */
-
-/* Desktop / Notebook (>=1025px) */
+/* ================= AJUSTES DESKTOP/NOTEBOOK ================= */
 @media (min-width:1025px){
-  /* altura mais enxuta */
+  /* Header mais baixo e compacto em notebook/desktop */
   .header{ min-height:150px; }
 
-  /* logo fica realmente encostada à esquerda do bloco .brand */
+  /* Logo maior e mais à esquerda */
   .header .brand{
-    width:460px;         /* pode ajustar se quiser 420/480 */
+    width:460px;
     height:150px;
-    justify-content:flex-start;   /* <— tira o centrado */
+    justify-content:flex-start;
   }
   .header .brand img{
     height:100% !important;
     width:auto !important;
   }
 
-  /* ações sempre em linha (sem quebra) e mais compactas em notebook */
+  /* Botões em linha, sem quebra, mais compactos */
   .header-actions{
     flex-wrap:nowrap !important;
     gap:8px;
   }
   .header-actions .btn{
-    white-space:nowrap;          /* não quebra texto do botão */
-    padding:10px 14px;           /* um pouco mais enxuto */
+    white-space:nowrap;
+    padding:10px 14px;
     font-size:14px;
   }
 }
 
-/* Faixa típica de notebook (1025–1440px): deixa ainda mais compacto */
+/* Faixa notebook (1025–1440px): compactar um pouco mais */
 @media (min-width:1025px) and (max-width:1440px){
-  .header .brand{ width:420px; }  /* reduz a largura ocupada pela logo */
+  .header .brand{ width:420px; }
   .header-actions .btn{ padding:8px 12px; font-size:13.5px; }
 }
 
-/* Mobile (<=768px) – header mais baixo, logo à esquerda e botões à direita */
+/* ================= SOMENTE MOBILE (<=768px) ================= */
 @media (max-width:768px){
-  .header{ min-height:80px; padding:6px 0; }
-
-  /* coloca logo e botões na MESMA linha */
-  .header-grid{
-    flex-direction:row !important;
-    align-items:center;
-    gap:8px;
-  }
-
-  /* logo menor e à esquerda */
-  .header .brand{
-    width:auto;
-    height:48px;                 /* altura da logo no mobile */
-    flex:0 0 auto;
-    justify-content:flex-start;  /* <— esquerda */
-  }
-  .header .brand img{
-    height:100% !important;
-    width:auto !important;
-  }
-
-  /* botões menores, lado a lado, alinhados à direita */
-  .header-actions{
-    margin-left:auto;            /* empurra pra direita */
-    flex-wrap:nowrap !important;
-    justify-content:flex-end;
-    gap:6px;
-  }
-  .header-actions .btn{
-    padding:8px 10px;
-    font-size:13px;
-    min-width:auto;              /* libera pra encolher */
-  }
-
-  /* botão hamburguer (opcional – aparece só no mobile) */
-  .hamburger{
-    display:inline-flex;
-    align-items:center; justify-content:center;
-    width:40px; height:40px;
-    border:1px solid rgba(255,255,255,.6);
-    border-radius:10px;
-    background:transparent;
-    color:#fff;
-  }
-}
-
-/* Esconde o hamburguer no desktop */
-@media (min-width:769px){
-  .hamburger{ display:none; }
-}
-
-}
-/* ===== Mobile (até 768px) ===== */
-@media (max-width:768px){
-  .header-grid{
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-  }
-
-  /* Logo à esquerda */
-  .header .brand{
-    width:auto;
-    height:70px; /* cabeçalho mais enxuto */
-    flex-shrink:0;
-  }
-  .header .brand img{
-    height:100% !important;
-    width:auto !important;
-  }
-
-  /* Ações à direita, botões menores lado a lado */
-  .header-actions{
-    display:flex;
-    flex-direction:row;
-    gap:6px;
-    justify-content:flex-end;
-    flex-wrap:nowrap;
-  }
-  .header-actions .btn{
-    padding:8px 10px;
-    font-size:13px;
-    flex:0 0 auto;
-  }
-
-  /* Menu hambúrguer visível apenas no mobile */
-  .menu-toggle{
-    display:block;
-    background:none;
-    border:0;
-    font-size:24px;
-    color:#fff;
-    cursor:pointer;
-  }
-}
-
-/* Esconde o menu hambúrguer no desktop */
-@media (min-width:769px){
-  .menu-toggle{ display:none; }
-}
-/* =========================================================
-   PATCH — alinhamento e tamanho dos botões + header layout
-   (cole no final do styles.css)
-   ========================================================= */
-
-/* 1) Header: grid para posicionar logo (à esquerda) e ações (à direita) */
-.header .container.header-grid{
-  display: grid;
-  grid-template-columns: auto 1fr; /* logo | espaço para ações */
-  align-items: center;
-  column-gap: 16px;
-}
-
-/* “puxa” um pouco para a esquerda (evita parecer colado na borda direita) */
-.header .container{
-  padding-left: 16px;
-  padding-right: 12px; /* diminui o respiro da direita */
-}
-
-/* 2) Desktop/Laptop: botões mais compactos e alinhados em linha */
-@media (min-width: 901px){
-  .header-actions{
-    justify-content: flex-end;
-    gap: 8px;
-    flex-wrap: nowrap;
-  }
-  .header .header-actions .btn{
-    padding: 10px 12px;   /* antes 12x16 */
-    font-size: 14px;      /* antes 15px */
-    line-height: 1;
-  }
-  /* deixa o header um pouco mais “baixo” para não ocupar tanto */
-  .header{ min-height: 150px; }
-  .header .brand{ height: 150px; }
-}
-
-/* 3) Notebooks (entre 901 e 1200px): um ajuste extra de compactação */
-@media (max-width: 1200px) and (min-width: 901px){
-  .header .brand{ width: 420px; }
-  .header .header-actions .btn{
-    padding: 9px 10px;
-    font-size: 13.5px;
-  }
-}
-
-/* 4) Mobile: botões lado a lado (rolagem horizontal se faltar espaço) */
-@media (max-width: 768px){
-  /* garante que o hambúrguer apareça; se não quiser usar, pode ignorar */
-  .menu-toggle{
-    display: block;
-    margin-left: auto;        /* cola à direita da linha da logo */
-    font-size: 26px;
-    background: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  /* ações visíveis, em linha e sem “amontoar” */
-  .header-actions{
-    order: 3;
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;        /* tudo em uma linha */
-    gap: 8px;
-    justify-content: flex-end;
-    overflow-x: auto;         /* se não couber, rola suave horizontal */
-    padding: 4px 0 10px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .header-actions::-webkit-scrollbar{ display: none; }
-
-  .header-actions .btn{
-    flex: 0 0 auto;           /* impede de quebrar o botão */
-    padding: 10px 12px;       /* menor no mobile */
-    font-size: 14px;
-  }
-
-  /* logo mais à esquerda e header menos alto */
-  .header{ min-height: auto; }
-  .header .brand{
-    width: 100%;
-    height: 150px;            /* reduz um pouco a altura no mobile */
-    justify-content: flex-start;
-  }
-  .header .brand img{
-    height: 100% !important;
-    width: auto !important;
-    object-fit: contain !important;
-  }
-}
-/* =========================================================
-   PATCH — Header mais baixo no PC + layout de PC no mobile
-   ========================================================= */
-
-/* 1) Desktop/Notebook: cabeçalho mais baixo */
-@media (min-width: 901px){
-  .header{
-    min-height: 120px;     /* antes ~150–170px */
-  }
-  .header .brand{
-    height: 120px;         /* acompanha a redução */
-    width: 420px;          /* leve ajuste de largura */
-  }
-  .header .brand img{
-    height: 100% !important;
-    width: auto !important;
-    object-fit: contain !important;
-  }
-  .header-actions .btn{
-    padding: 9px 12px;     /* um pouco mais compacto */
-    font-size: 14px;
-  }
-}
-
-/* 2) Mobile: replicar layout do PC (logo à esquerda, ações à direita) */
-@media (max-width: 900px){
-  /* some com o hambúrguer */
-  .menu-toggle{ display: none !important; }
-
-  /* header em linha, logo à esquerda e ações à direita */
-  .header-grid{
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    column-gap: 12px;
-  }
-
-  /* logo menor */
-  .header{
-    min-height: 0;               /* deixa a altura ser definida pelo conteúdo */
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-  .header .brand{
-    width: 260px;                /* controla a largura da área da logo */
-    height: 90px;                /* reduz bastante a altura da logo */
-    justify-content: flex-start; /* alinha à esquerda */
-  }
-  .header .brand img{
-    height: 100% !important;
-    width: auto !important;
-    object-fit: contain !important;
-  }
-
-  /* ações em linha, à direita, compactas */
-  .header-actions{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: nowrap;           /* mantém numa linha como no PC */
-    overflow-x: auto;            /* se faltar espaço, rola horizontal */
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .header-actions::-webkit-scrollbar{ display: none; }
-
-  .header-actions .btn{
-    flex: 0 0 auto;              /* evita quebra */
-    padding: 8px 10px;           /* menor que no PC */
-    font-size: 13px;             /* menor que no PC */
-    line-height: 1;
-  }
-}
-/* ===== PATCH: Cabeçalho (MOBILE) — botões em coluna ===== */
-@media (max-width: 768px){
-  /* garante que o conteúdo do header empilhe */
-  .header-grid{
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  /* botões EXISTENTES do cabeçalho em coluna, dentro do header */
-  .header-actions{
-    display: flex;
-    position: static;           /* nada flutuando/absoluto */
-    flex-direction: column;     /* coluna (vertical) */
-    align-items: stretch;       /* ocupa toda a largura */
-    gap: 10px;
-    width: 100%;
-    padding: 0 8px 10px;        /* respiro inferior */
-  }
-
-  /* tamanho confortável dos botões no mobile */
-  .header-actions .btn{
-    width: 100%;
-    justify-content: center;
-    padding: 12px;
-    font-size: 15px;
-    border-radius: 12px;
-  }
-}
-
-/* ===== Header / Topo ===== */
-.header{
-  position:sticky; top:0; z-index:50;
-  background: linear-gradient(90deg, #003C92 0%, #00B4FF 100%);
-  border-bottom:1px solid rgba(255,255,255,.12);
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
-  min-height:132px;
-}
-
-.header-grid{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-
-/* Logo */
-.header .brand{
-  display:flex; align-items:center;
-  background:transparent !important;
-  border:0 !important; box-shadow:none !important;
-}
-.logo-desktop{ display:block; height:120px; width:auto; }
-.logo-mobile{ display:none; height:80px; width:auto; }
-
-/* Botão hambúrguer (só mobile) */
-.menu-toggle{
-  display:none;
-  background:transparent;
-  border:0;
-  font-size:28px;
-  cursor:pointer;
-  color:#fff;
-}
-
-/* Ações */
-.header-actions{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:10px;
-}
-.header .header-actions .btn{
-  border-radius:999px; font-weight:800;
-  padding:10px 14px; font-size:14px;
-}
-
-/* Botões padrão */
-.header .btn.ghost{
-  background:transparent; color:#fff;
-  border:1px solid rgba(255,255,255,.7);
-}
-.header .btn.whats{
-  background:#25D366; color:#06220f;
-}
-.header .btn.primary{
-  background:#fff; color:#003C92; border:2px solid #fff;
-  font-weight:900; animation:pulse 1.8s infinite;
-}
-
-/* Mobile */
-@media (max-width:768px){
+  /* mostra a logo mobile e o hambúrguer */
   .logo-desktop{ display:none; }
   .logo-mobile{ display:block; margin-left:0; }
-
   .menu-toggle{ display:block; }
 
+  /* header em linha (logo à esquerda, hambúrguer depois) */
   .header-grid{
     flex-direction:row;
     align-items:center;
     justify-content:space-between;
+    gap:8px;
   }
 
-  /* Ações ficam em coluna vertical, alinhadas à direita */
+  /* logo menor à esquerda */
+  .header .brand{
+    width:auto;
+    height:70px;              /* cabeçalho enxuto */
+    flex-shrink:0;
+    justify-content:flex-start;
+  }
+  .header .brand img{
+    height:100% !important;
+    width:auto !important;
+    object-fit:contain !important;
+  }
+
+  /* AÇÕES: coluna vertical, alinhada à direita (como combinado) */
   .header-actions{
+    display:flex;
     flex-direction:column;
     align-items:flex-end;
     gap:6px;
@@ -793,7 +381,3 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     padding:8px 12px;
   }
 }
-
-
-
-
