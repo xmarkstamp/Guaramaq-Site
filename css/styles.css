@@ -369,4 +369,97 @@ footer .actions .btn.ghost{background:transparent;color:#cbd5e1}
     max-height:70px !important;
     transform:scale(1.1);
   }
+
+   /* ===================================================================
+   PATCH – Header: desktop/notebook alinhado + mobile compacto
+   (cole abaixo do CSS existente; só override, nada removido)
+   =================================================================== */
+
+/* Desktop / Notebook (>=1025px) */
+@media (min-width:1025px){
+  /* altura mais enxuta */
+  .header{ min-height:150px; }
+
+  /* logo fica realmente encostada à esquerda do bloco .brand */
+  .header .brand{
+    width:460px;         /* pode ajustar se quiser 420/480 */
+    height:150px;
+    justify-content:flex-start;   /* <— tira o centrado */
+  }
+  .header .brand img{
+    height:100% !important;
+    width:auto !important;
+  }
+
+  /* ações sempre em linha (sem quebra) e mais compactas em notebook */
+  .header-actions{
+    flex-wrap:nowrap !important;
+    gap:8px;
+  }
+  .header-actions .btn{
+    white-space:nowrap;          /* não quebra texto do botão */
+    padding:10px 14px;           /* um pouco mais enxuto */
+    font-size:14px;
+  }
+}
+
+/* Faixa típica de notebook (1025–1440px): deixa ainda mais compacto */
+@media (min-width:1025px) and (max-width:1440px){
+  .header .brand{ width:420px; }  /* reduz a largura ocupada pela logo */
+  .header-actions .btn{ padding:8px 12px; font-size:13.5px; }
+}
+
+/* Mobile (<=768px) – header mais baixo, logo à esquerda e botões à direita */
+@media (max-width:768px){
+  .header{ min-height:80px; padding:6px 0; }
+
+  /* coloca logo e botões na MESMA linha */
+  .header-grid{
+    flex-direction:row !important;
+    align-items:center;
+    gap:8px;
+  }
+
+  /* logo menor e à esquerda */
+  .header .brand{
+    width:auto;
+    height:48px;                 /* altura da logo no mobile */
+    flex:0 0 auto;
+    justify-content:flex-start;  /* <— esquerda */
+  }
+  .header .brand img{
+    height:100% !important;
+    width:auto !important;
+  }
+
+  /* botões menores, lado a lado, alinhados à direita */
+  .header-actions{
+    margin-left:auto;            /* empurra pra direita */
+    flex-wrap:nowrap !important;
+    justify-content:flex-end;
+    gap:6px;
+  }
+  .header-actions .btn{
+    padding:8px 10px;
+    font-size:13px;
+    min-width:auto;              /* libera pra encolher */
+  }
+
+  /* botão hamburguer (opcional – aparece só no mobile) */
+  .hamburger{
+    display:inline-flex;
+    align-items:center; justify-content:center;
+    width:40px; height:40px;
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:10px;
+    background:transparent;
+    color:#fff;
+  }
+}
+
+/* Esconde o hamburguer no desktop */
+@media (min-width:769px){
+  .hamburger{ display:none; }
+}
+
 }
